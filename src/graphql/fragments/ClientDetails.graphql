@@ -1,0 +1,4 @@
+fragment ClientDetails on Client {
+    id
+    name
+}

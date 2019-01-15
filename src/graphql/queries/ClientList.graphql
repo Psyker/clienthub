@@ -1,0 +1,11 @@
+#import "../fragments/ClientDetails.graphql"
+
+query ClientList {
+    clients {
+        edges {
+            node {
+                ...ClientDetails
+            }
+        }
+    }
+}

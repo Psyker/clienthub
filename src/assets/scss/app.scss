@@ -1,0 +1,30 @@
+@import "./bootstrap";
+@import url('https://fonts.googleapis.com/css?family=Lato:300,400,700,900');
+
+body {
+  background: white;
+  font-family: 'Lato', 'Helvetica', 'Arial', sans-serif;
+  color: black;
+  &.dark-theme {
+    color: white;
+    background: black;
+  }
+}
+
+button,.button {
+  transition: all .3s;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+a {
+  transition: all .3s;
+  color: cornflowerblue;
+  font-weight: 500;
+  text-decoration: none;
+  &:hover {
+    color: cadetblue;
+  }
+}

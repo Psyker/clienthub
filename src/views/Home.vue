@@ -1,18 +1,24 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+  <main class="container">
+    <div class="home-page">
+      <vue-headful title="ClientHub - Liste des clients"></vue-headful>
+      <h1>Liste des clients</h1>
+      <client-list/>
+    </div>
+
+  </main>
 </template>
 
 <script>
 // @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+import VueHeadful from "vue-headful";
+import ClientList from "../components/client/ClientList"
 
 export default {
   name: 'home',
   components: {
-    HelloWorld
+    VueHeadful,
+    ClientList
   }
 }
 </script>

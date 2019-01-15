@@ -1,12 +1,18 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+    <app-header/>
+    <transition name="fade-up" mode="out-in">
+      <router-view/>
+    </transition>
   </div>
 </template>
+
+<script>
+  import AppHeader from './components/ui/AppHeader'
+  export default {
+    components: { AppHeader }
+  }
+</script>
 
 <style>
 #app {
@@ -15,6 +21,5 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
 }
 </style>
