@@ -12,7 +12,7 @@
                     </span>
                 </button>
                 <transition name="fade-down" mode="in-out">
-                    <ul class="mobile-menu" v-if="showMenu">
+                    <ul v-on-clickaway="hideMenu" class="mobile-menu" v-if="showMenu">
                         <menu-item class="bright" :to="{name: 'about'}" icon="info">A propos</menu-item>
                     </ul>
                 </transition>
@@ -23,9 +23,13 @@
 
 <script>
     import MenuItem from './menu/MenuItem'
+    import { directive as onClickaway } from "vue-clickaway";
 
     export default {
         name: "app-header",
+        directives: {
+            onClickaway,
+        },
         components: {MenuItem},
         data () {
             return {
@@ -94,7 +98,6 @@
         }
         &:hover {
             cursor: pointer;
-            background: black;
         }
         & svg {
             color: white;

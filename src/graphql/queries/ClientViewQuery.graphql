@@ -1,0 +1,11 @@
+#import "../fragments/ClientDetails.graphql"
+
+query ClientViewQuery($slug: Any!) {
+    client(search: {field: SLUG, value: $slug}) {
+        ...ClientDetails
+        interventions {
+            createdAt
+            updatedAt
+        }
+    }
+}
