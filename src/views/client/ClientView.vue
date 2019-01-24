@@ -6,6 +6,7 @@
                     Damn
                 </div>
                 <div v-else-if="data && data.client">
+                    <vue-headful :title="'ClientHub - ' + data.client.name"></vue-headful>
                     {{data.client.name}}
                 </div>
             </template>
@@ -15,8 +16,11 @@
 </template>
 
 <script>
+    import VueHeadful from "vue-headful";
+
     export default {
         name: "client-view",
+        components: {VueHeadful},
         props: {
             slug: { type: String, required: true }
         },

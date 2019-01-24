@@ -5,7 +5,7 @@
                 Damn
             </div>
             <ul class="client-list" v-else-if="data && data.clients">
-                <li v-for="client in data.clients.edges" :key="client.node.id">
+                <li class="client-item" v-for="client in data.clients.edges" :key="client.node.id">
                     <router-link :to="{ name: 'client.view', params: { slug: client.node.slug } }">
                         {{ client.node.name }}
                     </router-link>
@@ -24,6 +24,14 @@
     }
 </script>
 
-<style scoped>
-
+<style lang="scss" scoped>
+    .client-list {
+        display: flex;
+        flex-flow: wrap;
+        list-style: none;
+        .client-item {
+            width: 500px;
+            height: 500px;
+        }
+    }
 </style>
