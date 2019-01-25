@@ -27,11 +27,21 @@
 <style lang="scss" scoped>
     .client-list {
         display: flex;
-        flex-flow: wrap;
+        flex-flow: row wrap;
         list-style: none;
+        justify-content: space-around;
+        padding: 0;
+        @include breakpoint(mobile) {
+            flex-direction: column;
+        }
         .client-item {
-            width: 500px;
-            height: 500px;
+            padding: 0;
+            align-self: center;
+            height: 250px;
+            width: 400px;
+            @include breakpoint(mobile) {
+                width: 100%;
+            }
         }
     }
 </style>
