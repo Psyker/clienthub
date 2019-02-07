@@ -49,7 +49,7 @@
 
 <style scoped lang="scss">
     .main-navbar {
-        background-color: whitesmoke;
+        background-color: white;
         position: fixed;
         z-index: 100;
         top: 0;
