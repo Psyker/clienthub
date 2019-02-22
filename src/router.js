@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
 import ClientView from "./views/client/ClientView";
+import Login from "./views/Login";
 
 Vue.use(Router);
 
@@ -19,6 +20,11 @@ export default new Router({
       name: 'client.view',
       component: ClientView,
       props: true,
+    },
+    {
+      path: '/login',
+      name: 'login',
+      component: Login,
     },
     {
       path: '/about',

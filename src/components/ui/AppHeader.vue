@@ -4,6 +4,7 @@
             <router-link :to="{name: 'home'}">ClientHub</router-link>
             <ul class="desktop-menu">
                 <menu-item :to="{name: 'about'}">A propos</menu-item>
+                <menu-item :to="{name: 'login'}">Se connecter</menu-item>
             </ul>
             <div @click.prevent="toggleMenu" class="menu-button">
                 <button class="hamburger hamburger--slider" :class="{'is-active': showMenu}" type="button">
@@ -14,6 +15,7 @@
                 <transition name="fade-down" mode="in-out">
                     <ul v-on-clickaway="hideMenu" class="mobile-menu" v-if="showMenu">
                         <menu-item class="bright" :to="{name: 'about'}" icon="info">A propos</menu-item>
+                        <menu-item class="bright" :to="{name: 'login'}" icon="user">Se connecter</menu-item>
                     </ul>
                 </transition>
             </div>
@@ -55,7 +57,7 @@
         top: 0;
         left: 0;
         right: 0;
-        height: 70px;
+        height: $navbar-height;
         @include navbarShadow();
         & .pull-right {
             margin-left: auto;
@@ -128,7 +130,7 @@
         position: absolute;
         display: flex;
         margin: 0;
-        text-align: right;
+        text-align: center;
         flex-direction: column;
         border-radius: 0 0 0 6px;
         width: max-content;

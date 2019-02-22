@@ -22,3 +22,14 @@ export default {
   }
 }
 </script>
+
+Keyboard
+const letters =[]
+
+  div
+    letters.map((letter, index)) => {
+        return Touch :letter=letter :key=index
+    })
+  /div
+
+
