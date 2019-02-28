@@ -73,13 +73,18 @@ export function createProvider (options = {}) {
 }
 
 // Manually call this when user log in
-export async function onLogin (apolloClient, token) {
+export async function onLogin (apolloClient, token, referrer) {
   if (typeof localStorage !== 'undefined' && token) {
     localStorage.setItem(AUTH_TOKEN, token)
   }
-  if (apolloClient.wsClient) restartWebsockets(apolloClient.wsClient)
+  if (apolloClient.wsClient) restartWebsockets(apolloClient.wsClient);
   try {
-    await apolloClient.resetStore()
+    await apolloClient.resetStore();
+    if (referrer) {
+      window.location.replace(referrer.fullPath)
+    } else {
+      window.location.reload(true);
+    }
   } catch (e) {
     // eslint-disable-next-line no-console
     console.log('%cError on cache reset (login)', 'color: orange;', e.message)

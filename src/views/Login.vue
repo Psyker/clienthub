@@ -22,7 +22,7 @@
                         </div>
 
                         <button class="button-primary" :disabled="loading" type="submit">
-                            <loader v-if="loading"/>
+                            <PulseLoader v-if="loading" color="cornflowerblue"/>
                             <span v-else>Se connecter</span>
                         </button>
                         <p v-if="gqlError">{{ gqlError }}</p>
@@ -35,10 +35,12 @@
 
 <script>
     import {EventBus} from "../main"
-    import {EVENT_LOGIN} from "../constants";
+    import {EVENT_LOGIN} from "../constants"
+    import PulseLoader from 'vue-spinner/src/PulseLoader'
 
     export default {
         name: "page-login",
+        components: {PulseLoader},
         data() {
             return {
                 email: "",
@@ -60,7 +62,7 @@
                 EventBus.$emit(EVENT_LOGIN, {
                     token,
                     referrer: this.referrer
-                })
+                });
             }
         }
     }
@@ -115,10 +117,14 @@
             padding: 20px 0 0 0;
 
             & button {
-                box-shadow: none;
-                margin-top: 20px;
-                border-top-left-radius: 0;
-                border-top-right-radius: 0;
+                background: white;
+                border: none;
+                border-top: 1px solid lightgrey;
+                padding: 20px;
+                cursor: pointer;
+                .loader {
+                    margin: 0 auto;
+                }
             }
 
             & .form-input {

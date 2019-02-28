@@ -21,14 +21,14 @@
       ...mapMutations("user", [SET_LOGGED_IN])
     },
     created() {
-      EventBus.$on(EVENT_LOGIN, async ({token, referrer}) => {
+      EventBus.$on(EVENT_LOGIN, async ({ token, referrer }) => {
         onLogin(
           this.$apolloProvider.defaultClient,
           token,
           referrer
         );
       });
-      EventBus.$on(EVENT_LOGOUT, async referrer => {
+      EventBus.$on(EVENT_LOGOUT, async (token, referrer) => {
         onLogout(this.$apolloProvider.defaultClient, referrer)
       })
     }
