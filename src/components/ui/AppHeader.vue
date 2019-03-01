@@ -4,7 +4,9 @@
             <router-link :to="{name: 'home'}">ClientHub</router-link>
             <ul class="desktop-menu">
                 <menu-item :to="{name: 'about'}">A propos</menu-item>
-                <menu-item :to="{name: 'login'}">Se connecter</menu-item>
+                <menu-item v-if="isLoggedIn && viewer" @click.prevent="logout">Se déconnecter</menu-item>
+                <menu-item v-if="!isLoggedIn" :to="{name: 'login'}">Connexion</menu-item>
+                <menu-item v-if="isLoggedIn && viewer">{{ `${viewer.firstname} ${viewer.lastname}` }}</menu-item>
             </ul>
             <div @click.prevent="toggleMenu" class="menu-button">
                 <button class="hamburger hamburger--slider" :class="{'is-active': showMenu}" type="button">
@@ -24,8 +26,10 @@
 </template>
 
 <script>
+    import { mapState, mapActions } from 'vuex'
     import MenuItem from './menu/MenuItem'
     import { directive as onClickaway } from "vue-clickaway";
+    import { SET_VIEWER } from "../../store/modules/user/actions";
 
     export default {
         name: "app-header",
@@ -38,7 +42,19 @@
                 showMenu: false
             }
         },
+        computed: {
+            ...mapState('user', ['isLoggedIn'])
+        },
+        apollo: {
+            viewer: {
+                query: require("../../graphql/queries/user/ViewerQuery.graphql"),
+                result({data: { viewer } }) {
+                    this[SET_VIEWER](viewer)
+                }
+            }
+        },
         methods: {
+            ...mapActions("user", [SET_VIEWER]),
             toggleMenu() {
                 this.showMenu = !this.showMenu;
             },

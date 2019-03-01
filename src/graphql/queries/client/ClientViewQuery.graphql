@@ -1,4 +1,4 @@
-#import "../fragments/ClientDetails.graphql"
+#import "../../fragments/ClientDetails.graphql"
 
 query ClientViewQuery($slug: Any!) {
     client(search: {field: SLUG, value: $slug}) {

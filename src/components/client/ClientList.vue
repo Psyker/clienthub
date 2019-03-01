@@ -1,5 +1,5 @@
 <template>
-    <ApolloQuery :query="require('../../graphql/queries/ClientList.graphql')">
+    <ApolloQuery :query="require('../../graphql/queries/client/ClientList.graphql')">
         <template slot-scope="{ result: { data, loading } }">
             <div v-if="loading">
                 Damn
@@ -45,6 +45,7 @@
             flex-direction: column;
         }
         .client-item {
+            margin-right: 10px;
             box-shadow: 10px 12px 15px -18px #b9b9b9;
             border-radius: 5px;
             flex-flow: column;
@@ -67,6 +68,7 @@
             }
             @include breakpoint(mobile) {
                 width: 100%;
+                margin-right: 0;
             }
         }
     }

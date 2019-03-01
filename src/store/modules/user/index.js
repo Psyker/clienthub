@@ -1,4 +1,5 @@
 import mutations from "./mutations";
+import actions from "./actions";
 import { AUTH_TOKEN } from "../../../vue-apollo"
 
 const state = {
@@ -9,5 +10,6 @@ const state = {
 export default {
     namespaced: true,
     state,
-    mutations
+    actions,
+    mutations,
 }

@@ -1,4 +1,4 @@
-#import "../fragments/ClientDetails.graphql"
+#import "../../fragments/ClientDetails.graphql"
 
 query ClientList {
     clients {

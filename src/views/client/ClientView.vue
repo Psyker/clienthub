@@ -1,6 +1,6 @@
 <template>
     <main class="container client-page">
-        <ApolloQuery :query="require('../../graphql/queries/ClientViewQuery.graphql')" :variables="{slug}">
+        <ApolloQuery :query="require('../../graphql/queries/client/ClientViewQuery.graphql')" :variables="{slug}">
             <template slot-scope="{ result: { data, loading } }">
                 <div v-if="loading">
                     Damn
@@ -20,7 +20,7 @@
 
     export default {
         name: "client-view",
-        components: {VueHeadful},
+        components: { VueHeadful },
         props: {
             slug: { type: String, required: true }
         },
