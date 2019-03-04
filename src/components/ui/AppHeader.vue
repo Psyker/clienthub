@@ -17,7 +17,9 @@
                 <transition name="fade-down" mode="in-out">
                     <ul v-on-clickaway="hideMenu" class="mobile-menu" v-if="showMenu">
                         <menu-item class="bright" :to="{name: 'about'}" icon="info">A propos</menu-item>
-                        <menu-item class="bright" :to="{name: 'login'}" icon="user">Se connecter</menu-item>
+                        <menu-item class="bright" v-if="!isLoggedIn" :to="{name: 'login'}" icon="user">Se connecter</menu-item>
+                        <menu-item class="bright" v-if="isLoggedIn && viewer" @click.prevent="logout">Se déconnecter</menu-item>
+                        <menu-item class="bright" v-if="isLoggedIn && viewer">{{ `${viewer.firstname} ${viewer.lastname}` }}</menu-item>
                     </ul>
                 </transition>
             </div>
@@ -30,6 +32,8 @@
     import MenuItem from './menu/MenuItem'
     import { directive as onClickaway } from "vue-clickaway";
     import { SET_VIEWER } from "../../store/modules/user/actions";
+    import { EventBus } from '../../main'
+    import { EVENT_LOGOUT } from "../../constants";
 
     export default {
         name: "app-header",
@@ -60,6 +64,10 @@
             },
             hideMenu() {
                 this.showMenu = false;
+            },
+            logout() {
+                console.log('oui');
+                EventBus.$emit(EVENT_LOGOUT, {referrer: this.$route});
             }
         }
     }

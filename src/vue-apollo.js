@@ -9,7 +9,7 @@ Vue.use(VueApollo);
 export const AUTH_TOKEN = 'jwt-token';
 
 // Http endpoint
-const httpEndpoint = process.env.VUE_APP_GRAPHQL_HTTP || 'http://localhost:8000/'
+const httpEndpoint = process.env.VUE_APP_GRAPHQL_HTTP || 'http://localhost:8000/';
 
 // Config
 const defaultOptions = {
@@ -44,7 +44,7 @@ const defaultOptions = {
 
   // Client local data (see apollo-link-state)
   // clientState: { resolvers: { ... }, defaults: { ... } }
-}
+};
 
 // Call this in the Vue app file
 export function createProvider (options = {}) {
@@ -91,13 +91,18 @@ export async function onLogin (apolloClient, token, referrer) {
 }
 
 // Manually call this when user log out
-export async function onLogout (apolloClient) {
-  if (typeof localStorage !== 'undefined') {
-    localStorage.removeItem(AUTH_TOKEN)
-  }
+export async function onLogout (apolloClient, referrer) {
+
   if (apolloClient.wsClient) restartWebsockets(apolloClient.wsClient);
   try {
-    await apolloClient.resetStore()
+    if (typeof localStorage !== 'undefined') {
+      localStorage.removeItem(AUTH_TOKEN)
+    }
+    if (referrer) {
+      window.location.replace(referrer.fullPath)
+    } else {
+      window.location.reload(true);
+    }
   } catch (e) {
     // eslint-disable-next-line no-console
     console.log('%cError on cache reset (logout)', 'color: orange;', e.message)

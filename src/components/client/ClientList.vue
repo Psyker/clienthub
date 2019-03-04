@@ -1,9 +1,7 @@
 <template>
     <ApolloQuery :query="require('../../graphql/queries/client/ClientList.graphql')">
         <template slot-scope="{ result: { data, loading } }">
-            <div v-if="loading">
-                Damn
-            </div>
+            <PulseLoader v-if="loading" color="cornflowerblue"/>
             <ul class="client-list" v-else-if="data && data.clients">
                 <li class="client-item" v-for="client in data.clients.edges" :key="client.node.id">
                     <router-link :to="{ name: 'client.view', params: { slug: client.node.slug } }">
@@ -22,15 +20,19 @@
                 </li>
             </ul>
             <div v-else-if="data && !data.clients">
-                Damn again.
+                Aucun clients, pour le moment ;)
             </div>
         </template>
     </ApolloQuery>
 </template>
 
 <script>
+    import PulseLoader from 'vue-spinner/src/PulseLoader';
     export default {
         name: "ClientList",
+        components: {
+            PulseLoader
+        }
     }
 </script>
 

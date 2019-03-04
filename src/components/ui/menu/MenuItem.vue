@@ -1,6 +1,6 @@
 <template>
-    <li>
-        <router-link v-if="to" :to="to" class="menu-item">
+    <li @click="$emit('click', $event)" class="menu-item">
+        <router-link v-if="to" :to="to">
             <icon v-if="icon" :name="icon"/>
             <slot></slot>
         </router-link>
