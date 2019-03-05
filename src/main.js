@@ -3,6 +3,7 @@ import App from './App.vue'
 import router from './router'
 import Feather from 'vue-icon'
 import vueHeadful from "vue-headful"
+import Toasted from 'vue-toasted'
 import store from "./store"
 import { createProvider } from './vue-apollo'
 
@@ -14,6 +15,7 @@ Vue.config.productionTip = false;
 
 Vue.component("vue-headful", vueHeadful);
 Vue.use(Feather);
+Vue.use(Toasted);
 
 new Vue({
   router,

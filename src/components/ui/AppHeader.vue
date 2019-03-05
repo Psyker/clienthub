@@ -3,10 +3,11 @@
         <div class="container">
             <router-link :to="{name: 'home'}">ClientHub</router-link>
             <ul class="desktop-menu">
+                <menu-item v-if="isLoggedIn && viewer" :to="{name: 'user.dashboard'}">Dashboard</menu-item>
                 <menu-item :to="{name: 'about'}">A propos</menu-item>
                 <menu-item v-if="isLoggedIn && viewer" @click.prevent="logout">Se déconnecter</menu-item>
                 <menu-item v-if="!isLoggedIn" :to="{name: 'login'}">Connexion</menu-item>
-                <menu-item v-if="isLoggedIn && viewer">{{ `${viewer.firstname} ${viewer.lastname}` }}</menu-item>
+                <menu-item v-if="isLoggedIn && viewer"><icon name="user"></icon>{{ `${viewer.firstname} ${viewer.lastname}` }}</menu-item>
             </ul>
             <div @click.prevent="toggleMenu" class="menu-button">
                 <button class="hamburger hamburger--slider" :class="{'is-active': showMenu}" type="button">
@@ -16,10 +17,11 @@
                 </button>
                 <transition name="fade-down" mode="in-out">
                     <ul v-on-clickaway="hideMenu" class="mobile-menu" v-if="showMenu">
+                        <menu-item class="bright" v-if="isLoggedIn && viewer" :to="{name: 'user.dashboard'}" icon="bar-chart-2">Dashboard</menu-item>
                         <menu-item class="bright" :to="{name: 'about'}" icon="info">A propos</menu-item>
-                        <menu-item class="bright" v-if="!isLoggedIn" :to="{name: 'login'}" icon="user">Se connecter</menu-item>
-                        <menu-item class="bright" v-if="isLoggedIn && viewer" @click.prevent="logout">Se déconnecter</menu-item>
-                        <menu-item class="bright" v-if="isLoggedIn && viewer">{{ `${viewer.firstname} ${viewer.lastname}` }}</menu-item>
+                        <menu-item class="bright" v-if="!isLoggedIn" :to="{name: 'login'}" icon="power">Se connecter</menu-item>
+                        <menu-item class="bright" v-if="isLoggedIn && viewer" @click.prevent="logout" icon="power">Se déconnecter</menu-item>
+                        <menu-item class="bright" v-if="isLoggedIn && viewer" icon="user">{{ `${viewer.firstname} ${viewer.lastname}` }}</menu-item>
                     </ul>
                 </transition>
             </div>
@@ -66,7 +68,6 @@
                 this.showMenu = false;
             },
             logout() {
-                console.log('oui');
                 EventBus.$emit(EVENT_LOGOUT, {referrer: this.$route});
             }
         }
@@ -154,7 +155,7 @@
         position: absolute;
         display: flex;
         margin: 0;
-        text-align: center;
+        text-align: left;
         flex-direction: column;
         border-radius: 0 0 0 6px;
         width: max-content;
