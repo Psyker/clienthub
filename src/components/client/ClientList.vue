@@ -29,7 +29,7 @@
 <script>
     import PulseLoader from 'vue-spinner/src/PulseLoader';
     export default {
-        name: "ClientList",
+        name: "client-list",
         components: {
             PulseLoader
         }
@@ -41,9 +41,9 @@
         display: flex;
         flex-flow: row wrap;
         list-style: none;
-        justify-content: space-around;
-        padding: 0;
+        padding: 0 170px;
         @include breakpoint(mobile) {
+            padding: 0;
             flex-direction: column;
         }
         .client-item {

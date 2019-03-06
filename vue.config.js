@@ -1,10 +1,4 @@
 module.exports = {
-    rules: [
-        {
-            test: /\.svg$/,
-            loader: 'vue-svg-loader',
-        },
-    ],
     css: {
         loaderOptions: {
             // pass options to sass-loader
