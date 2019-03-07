@@ -1,0 +1,12 @@
+mutation AddClientMutation($input: CreateClientInput!) {
+    createClient(input: $input) {
+        client {
+            id
+            name
+            address
+            zipCode
+            createdAt
+            updatedAt
+        }
+    }
+}

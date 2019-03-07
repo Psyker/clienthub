@@ -5,7 +5,7 @@
             <h1>Dashboard</h1>
             <div class="module-header">
                 <h3>Liste des clients</h3>
-                <router-link :to="{name: 'client.new'}">Ajouter un client</router-link>
+                <router-link :to="{ name: 'client.new' }">Ajouter un client</router-link>
             </div>
             <client-list/>
         </div>
@@ -20,6 +20,9 @@
 
     export default {
         name: 'dashboard',
+        props: {
+            slug: {type: String, required: false}
+        },
         components: {
             VueHeadful,
             ClientList

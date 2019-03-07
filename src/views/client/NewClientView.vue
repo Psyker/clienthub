@@ -2,7 +2,7 @@
     <main class="container">
         <div class="creation-page">
             <h1>Ajouter un nouveau client</h1>
-            <ClientForm :onSubmit="handleSubmit" />
+            <ClientForm v-on:created="onCreate" />
         </div>
     </main>
 </template>
@@ -13,8 +13,17 @@
         name: "new-client-page",
         components: {ClientForm},
         methods: {
-            handleSubmit(args) {
-                console.log(args)
+            onCreate() {
+                this.$toasted.show('✅ Le client à bien été crée. Vous allez être redirigé vers le dashboard ...', {
+                    theme: 'bubble',
+                    position: 'bottom-right',
+                    duration: 2500,
+                    closeOnSwipe: true,
+                    className: "clienthub-toast",
+                });
+                setTimeout(() => {
+                    window.location.replace('/dashboard');
+                }, 3000)
             }
         }
     }

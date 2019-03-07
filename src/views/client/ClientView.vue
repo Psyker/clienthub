@@ -16,7 +16,6 @@
 <script>
     import VueHeadful from "vue-headful";
     import PulseLoader from 'vue-spinner/src/PulseLoader'
-
     export default {
         name: "client-view",
         components: { VueHeadful, PulseLoader },

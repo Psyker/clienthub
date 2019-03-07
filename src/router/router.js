@@ -6,6 +6,7 @@ import Login from "../views/Login";
 import Dashboard from "../views/user/Dashboard";
 import {loginGuard} from "./guards";
 import NewClientView from "../views/client/NewClientView";
+import EditClientView from "../views/client/EditClientView"
 
 Vue.use(Router);
 
@@ -28,6 +29,12 @@ const router = new Router({
       path: '/client/new',
       name: 'client.new',
       component: NewClientView,
+    },
+    {
+      path: '/client/:slug/edit',
+      props: true,
+      name: 'client.edit',
+      component: EditClientView,
     },
     {
       path: '/dashboard',

@@ -1,0 +1,12 @@
+mutation EditClientMutation($input: EditClientInput!) {
+    editClient(input: $input) {
+        client {
+            id
+            name
+            address
+            zipCode
+            createdAt
+            updatedAt
+        }
+    }
+}
