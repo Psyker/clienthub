@@ -8,6 +8,7 @@ import store from "./store"
 import { createProvider } from './vue-apollo'
 
 import "./assets/scss/app.scss"
+import VueJSModal from "vue-js-modal";
 
 export const EventBus = new Vue();
 
@@ -16,6 +17,7 @@ Vue.config.productionTip = false;
 Vue.component("vue-headful", vueHeadful);
 Vue.use(Feather);
 Vue.use(Toasted);
+Vue.use(VueJSModal, {dialog: true});
 
 new Vue({
   router,

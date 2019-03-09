@@ -1,5 +1,6 @@
 <template>
     <li class="client-item">
+        <v-dialog/>
         <router-link :to="{ name: 'client.view', params: { slug: client.slug } }">
             {{ client.name }}
         </router-link>
@@ -16,7 +17,7 @@
         <div class="actions">
             <router-link :to="{ name: 'client.edit', params: { slug: client.slug } }"><icon name="edit"></icon></router-link>
             <router-link :to="{ name: 'client.view', params: { slug: client.slug } }"><icon name="eye"></icon></router-link>
-            <a href="#" @click.prevent="handleDelete"><icon name="trash"></icon></a>
+            <a href="#" @click.prevent="confirmDelete"><icon name="trash"></icon></a>
         </div>
     </li>
 </template>
@@ -28,6 +29,22 @@
             client: {type: Object, required: true}
         },
         methods: {
+            confirmDelete() {
+                this.$modal.show('dialog', {
+                    title: 'Confirmer la suppression',
+                    text: 'Voulez vous vraiment supprimer ce client ? 😱',
+                    buttons: [
+                        {
+                            title: 'Oui',
+                            default: true,
+                            handler: this.handleDelete
+                        },
+                        {
+                            title: 'Non',
+                        },
+                    ]
+                })
+            },
             handleDelete() {
                 this.$apollo.mutate({
                     mutation: require('../../graphql/mutations/DeleteClientMutation.graphql'),
