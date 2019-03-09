@@ -17,13 +17,13 @@
                 this.$toasted.show('✅ Le client à bien été crée. Vous allez être redirigé vers le dashboard ...', {
                     theme: 'bubble',
                     position: 'bottom-right',
-                    duration: 2500,
+                    duration: 1500,
                     closeOnSwipe: true,
                     className: "clienthub-toast",
                 });
                 setTimeout(() => {
-                    window.location.replace('/dashboard');
-                }, 3000)
+                    this.$router.push('/dashboard')
+                }, 1600)
             }
         }
     }

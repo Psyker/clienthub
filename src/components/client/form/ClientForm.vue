@@ -2,27 +2,29 @@
     <main>
         <form @submit.prevent="handleSubmit" class="client-form" method="post">
             <div class="form-input">
-                <input name="name" placeholder="Nom du client" type="text" v-model="name">
+                <label for="name">Nom du client</label>
+                <input id="name" name="name" placeholder="Nom du client" type="text" v-model="name">
             </div>
             <div class="form-input">
-                <input name="address" placeholder="Adresse du client" type="text" v-model="address">
+                <label for="address">Adresse du client</label>
+                <input id="address" name="address" placeholder="Adresse du client" type="text" v-model="address">
             </div>
             <div class="form-input">
-                <input name="name" placeholder="Code postal" type="text" v-model="zipCode">
+                <label for="zipCode">Code postal</label>
+                <input id="zipCode" name="zipCode" placeholder="Code postal" type="text" v-model="zipCode">
             </div>
-
             <button :disabled="loading" @submit.prevent="handleSubmit" class="button-primary"
                     type="submit">
                 <PulseLoader color="cornflowerblue" v-if="loading"/>
                 <span v-else>Sauvegarder</span>
             </button>
+            <div v-if="gqlError">{{gqlError}}</div>
         </form>
     </main>
 </template>
 
 <script>
     import PulseLoader from 'vue-spinner/src/PulseLoader'
-
     export default {
         name: "client-form",
         components: {PulseLoader},
@@ -35,8 +37,7 @@
                 address: '',
                 zipCode: '',
                 loading: false,
-                data: {},
-                gqlError: {}
+                gqlError: null
             }
         },
         created() {
@@ -58,33 +59,22 @@
                 }
             },
             handleSubmit() {
+                let params = {input: {name: this.name, address: this.address, zip_code: this.zipCode}};
+                if (this.client) {
+                    params.input.client = this.client.slug;
+                }
                 this.$apollo.mutate({
                     mutation: this.client
                         ? require('../../../graphql/mutations/EditClientMutation.graphql')
                         : require('../../../graphql/mutations/AddClientMutation.graphql'),
-                    variables: this.client ? {
-                        input: {
-                            name: this.name,
-                            address: this.address,
-                            zip_code: this.zipCode,
-                            client: this.client.slug
-                        }
-                    } : {
-                        input: {
-                            name: this.name,
-                            address: this.address,
-                            zip_code: this.zipCode
-                        }
-                    }
-                }).then((loading, data, gqlError) => {
+                    variables: params
+                }).then((loading, gqlError) => {
                     this.loading = loading;
-                    this.data = data;
                     this.gqlError = gqlError;
                     this.done()
                 });
             }
-        },
-
+        }
     }
 </script>
 
@@ -98,8 +88,11 @@
         .client-form {
             display: flex;
             flex-direction: column;
-            padding: 2%;
-
+            margin: 0 auto;
+            width: 70%;
+            @include breakpoint(mobile) {
+                width: 100%;
+            }
             & button {
                 background: white;
                 border: none;
@@ -114,21 +107,24 @@
             }
 
             & .form-input {
-                width: 100%;
-                margin: 16px auto;
                 position: relative;
-
+                display: flex;
+                flex-direction: column;
+                margin-bottom: 20px;
                 & input {
                     width: 100%;
                     padding: 10px;
                     border-radius: 3px;
                     border: 1px solid darken(white, 5%);
                     @include breakpoint(desktop) {
-                        width: 70%;
+                        width: 100%;
                     }
                 }
+                & label {
+                    margin-bottom: 5px;
+                    text-align: left;
+                }
             }
-
         }
     }
 

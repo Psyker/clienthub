@@ -1,15 +1,15 @@
 <template>
-    <ApolloQuery :query="require('../../graphql/queries/client/ClientList.graphql')">
-        <template slot-scope="{ result: { data, loading } }">
-            <PulseLoader v-if="loading" color="cornflowerblue"/>
-            <ul class="client-list" v-else-if="data && data.clients">
-                <ClientItem v-for="client in data.clients.edges" :client="client.node" :key="client.node.id" />
-            </ul>
-            <div v-else-if="data && !data.clients">
-                Aucun clients, pour le moment ;)
-            </div>
-        </template>
-    </ApolloQuery>
+    <PulseLoader v-if="$apollo.queries.clients.loading" color="cornflowerblue"/>
+    <ul class="client-list" v-else-if="clients && clients.edges.length > 0">
+        <ClientItem v-for="client in clients.edges"
+                    :client="client.node"
+                    :key="client.node.id"
+                    v-on:deleted="onDelete"
+        />
+    </ul>
+    <div v-else-if="clients && clients.edges.length === 0">
+        Aucun clients, pour le moment ;)
+    </div>
 </template>
 
 <script>
@@ -20,6 +20,16 @@
         components: {
             ClientItem,
             PulseLoader
+        },
+        methods: {
+            onDelete() {
+                this.$apollo.queries.clients.refetch()
+            }
+        },
+        apollo: {
+            clients: {
+                query: require('../../graphql/queries/client/ClientList.graphql'),
+            }
         }
     }
 </script>

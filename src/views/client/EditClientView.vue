@@ -17,9 +17,7 @@
 
     export default {
         name: "EditClientView",
-        components: {
-            ClientForm
-        },
+        components: {ClientForm,},
         props: {
             slug: {type: String, required: false}
         },
@@ -28,15 +26,15 @@
                 this.$toasted.show('✅ Le client à bien été édité. Vous allez être redirigé vers le dashboard ...', {
                     theme: 'bubble',
                     position: 'bottom-right',
-                    duration: 2500,
+                    duration: 1500,
                     closeOnSwipe: true,
                     className: "clienthub-toast",
                 });
                 setTimeout(() => {
-                    window.location.replace('/dashboard');
-                }, 3000)
+                    this.$router.push('/dashboard')
+                }, 1600)
 
-            }
+            },
         }
     }
 </script>
@@ -44,5 +42,19 @@
 <style lang="scss" scoped>
     .edition-page {
         margin-top: $navbar-height;
+        h1 {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .button-primary {
+            margin-left: 20px;
+            background-color: white;
+            border: none;
+            padding: 20px;
+            font-size: 16px;
+        }
     }
 </style>

@@ -25,7 +25,7 @@
                             <PulseLoader v-if="loading" color="cornflowerblue"/>
                             <span v-else>Se connecter</span>
                         </button>
-                        <p v-if="gqlError">{{ gqlError }}</p>
+                        <p v-if="gqlError">{{ gqlError.message }}</p>
                     </main>
                 </form>
             </template>

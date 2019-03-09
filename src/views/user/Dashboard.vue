@@ -26,7 +26,7 @@
         components: {
             VueHeadful,
             ClientList
-        }
+        },
     }
 </script>
 
@@ -35,7 +35,7 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 0px 170px;
+        padding: 0px 190px;
         @include breakpoint(mobile) {
             padding: 0;
         }
