@@ -1,6 +1,7 @@
 <template>
     <ApolloQuery :query="require('../../graphql/queries/client/ClientViewQuery.graphql')" :variables="{slug}">
         <template slot-scope="{ result: { data, loading, gqlError } }">
+            <vue-headful :title="'ClientHub - Édition' + data.client.name"></vue-headful>
             <main class="container">
                 <div class="edition-page">
                     <h1>Éditer le client</h1>

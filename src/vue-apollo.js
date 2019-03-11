@@ -91,18 +91,15 @@ export async function onLogin (apolloClient, token, referrer) {
 }
 
 // Manually call this when user log out
-export async function onLogout (apolloClient, referrer) {
+export async function onLogout (apolloClient) {
 
   if (apolloClient.wsClient) restartWebsockets(apolloClient.wsClient);
   try {
     if (typeof localStorage !== 'undefined') {
       localStorage.removeItem(AUTH_TOKEN)
     }
-    if (referrer) {
-      window.location.replace(referrer.fullPath)
-    } else {
-      window.location.reload(true);
-    }
+    window.location.replace('/')
+
   } catch (e) {
     // eslint-disable-next-line no-console
     console.log('%cError on cache reset (logout)', 'color: orange;', e.message)

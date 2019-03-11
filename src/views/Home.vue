@@ -1,5 +1,6 @@
 <template>
   <main class="container">
+    <vue-headful title="ClientHub - Accueil" description="Manage your clients, create bills, save time."/>
     <div class="container-jumbotron">
       <img src="../assets/img/undraw_businessman_97x4.svg" alt="">
       <div class="container-title">

@@ -28,8 +28,8 @@
           referrer
         );
       });
-      EventBus.$on(EVENT_LOGOUT, async (token, referrer) => {
-        onLogout(this.$apolloProvider.defaultClient, referrer)
+      EventBus.$on(EVENT_LOGOUT, async (token) => {
+        onLogout(this.$apolloProvider.defaultClient)
       });
     }
   }

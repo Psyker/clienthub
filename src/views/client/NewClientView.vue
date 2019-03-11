@@ -1,5 +1,6 @@
 <template>
     <main class="container">
+        <vue-headful title="ClientHub - Création client"></vue-headful>
         <div class="creation-page">
             <h1>Ajouter un nouveau client</h1>
             <ClientForm v-on:created="onCreate" />

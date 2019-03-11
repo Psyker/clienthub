@@ -68,7 +68,7 @@
                 this.showMenu = false;
             },
             logout() {
-                EventBus.$emit(EVENT_LOGOUT, {referrer: this.$route});
+                EventBus.$emit(EVENT_LOGOUT);
             }
         }
     }
