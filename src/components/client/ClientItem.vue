@@ -93,6 +93,9 @@
             width: 100%;
             margin-right: 0;
         }
+        @include breakpoint(tablet) {
+            margin-right: 10px;
+        }
         .actions {
             position: absolute;
             bottom: 15px;

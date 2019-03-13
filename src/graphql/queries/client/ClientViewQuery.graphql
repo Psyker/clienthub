@@ -3,10 +3,19 @@
 query ClientViewQuery($slug: Any!) {
     client(search: {field: SLUG, value: $slug}) {
         ...ClientDetails
+        referrers {
+            id
+            firstname
+            lastname
+            job
+            phone
+            email
+        }
         interventions(orderBy: {field: START_AT, direction: DESC}) {
             edges {
                 node {
                     id
+                    inProgress
                     type {
                         name
                     }
