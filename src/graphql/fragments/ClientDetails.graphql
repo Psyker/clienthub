@@ -4,9 +4,6 @@ fragment ClientDetails on Client {
     address
     zipCode
     slug
-    interventions {
-        inProgress
-    }
     createdAt
     updatedAt
 }

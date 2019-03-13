@@ -7,10 +7,10 @@
         <div class="client-infos">
             <p>Adresse: {{ client.address }}, {{ client.zipCode }}</p>
             <div class="interventions-count">
-                <p>Interventions prévues : {{ client.interventions.length }}</p>
-                <p>
-                    Interventions terminées :
-                    {{ client.interventions.filter(intervention => intervention.inProgress).length }}
+                <p>Crée le : {{ client.createdAt }}</p>
+                <p> Mis à jour le  :
+                    <span v-if="client.updatedAt">{{client.updatedAt}}</span>
+                    <span v-else>aucune modifications.</span>
                 </p>
             </div>
         </div>

@@ -3,9 +3,17 @@
 query ClientViewQuery($slug: Any!) {
     client(search: {field: SLUG, value: $slug}) {
         ...ClientDetails
-        interventions {
-            createdAt
-            updatedAt
+        interventions(orderBy: {field: START_AT, direction: DESC}) {
+            edges {
+                node {
+                    id
+                    type {
+                        name
+                    }
+                    startAt
+                    endAt
+                }
+            }
         }
     }
 }
