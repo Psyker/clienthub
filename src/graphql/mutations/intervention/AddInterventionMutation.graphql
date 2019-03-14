@@ -1,0 +1,9 @@
+mutation AddInterventionMutation($input: CreateInterventionInput!) {
+    createIntervention(input: $input) {
+        intervention {
+            id
+            startAt
+            endAt
+        }
+    }
+}

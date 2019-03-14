@@ -65,8 +65,8 @@
                 }
                 this.$apollo.mutate({
                     mutation: this.client
-                        ? require('../../../graphql/mutations/EditClientMutation.graphql')
-                        : require('../../../graphql/mutations/AddClientMutation.graphql'),
+                        ? require('../../../graphql/mutations/client/EditClientMutation.graphql')
+                        : require('../../../graphql/mutations/client/AddClientMutation.graphql'),
                     variables: params
                 }).then((loading, gqlError) => {
                     this.loading = loading;

@@ -1,7 +1,7 @@
 <template>
     <div class="page-login">
         <vue-headful title="ClientHub - Connexion"/>
-        <ApolloMutation :mutation="require('../graphql/mutations/LoginUserMutation.graphql')"
+        <ApolloMutation :mutation="require('../graphql/mutations/user/LoginUserMutation.graphql')"
                         :variables="{ input: { email, password } }"
                         @done="onSuccessLogin">
             <template slot-scope="{ mutate, loading, gqlError }">

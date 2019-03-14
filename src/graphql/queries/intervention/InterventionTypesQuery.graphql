@@ -1,0 +1,10 @@
+query InterventionTypes {
+    interventionTypes {
+        edges {
+            node {
+                id
+                name
+            }
+        }
+    }
+}

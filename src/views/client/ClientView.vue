@@ -21,17 +21,28 @@
                     <p v-if="client.referrers.length === 0">Aucun référrants.</p>
                 </div>
                 <div class="timeline">
-                    <h2>Interventions <button class="intervention-action-creation">Ajouter une intervention</button></h2>
-                    <div  v-for="(timelinePart, idx) in orderedInterventions" :key="idx">
+                    <h2>Interventions
+                        <router-link :to="{name: 'intervention.new', slug: client.slug}"
+                                     class="intervention-action-creation">Ajouter une intervention
+                        </router-link>
+                    </h2>
+                    <div v-for="(timelinePart, idx) in orderedInterventions" :key="idx">
                         <p v-if="!orderedInterventions[idx - 1] || orderedInterventions[idx - 1].year !== timelinePart.year">
                             <b>{{timelinePart.year}}</b>
                         </p>
                         {{timelinePart.month}}
                         <ul class="intervention-list">
-                            <li class="intervention-item" v-for="intervention  in timelinePart.interventions" :key="intervention.id">
-                                <p>{{ intervention.startAt|moment('DD/MM/YYYY hh:mm:ss') }} - {{intervention.endAt|moment('DD/MM/YYYY hh:mm:ss')}}</p>
+                            <li class="intervention-item" v-for="intervention in timelinePart.interventions"
+                                :key="intervention.id">
+                                <p>{{ intervention.startAt|moment('DD/MM/YYYY hh:mm:ss') }} -
+                                    {{intervention.endAt|moment('DD/MM/YYYY hh:mm:ss')}}</p>
                                 <p>Type: {{intervention.type.name}}</p>
                                 <p>En cours: {{intervention.inProgress ? 'Oui' : 'Non'}}</p>
+                                <div class="actions" v-if="intervention">
+                                    <router-link :to="{name: 'intervention.edit', params: {slug: client.slug, id: intervention.id}}">
+                                        <icon name="edit"></icon>
+                                    </router-link>
+                                </div>
                             </li>
                         </ul>
                     </div>
@@ -45,11 +56,13 @@
 <script>
     import VueHeadful from "vue-headful";
     import PulseLoader from 'vue-spinner/src/PulseLoader'
+    import InterventionForm from '../../components/intervention/form/InterventionForm'
+
     export default {
         name: "client-view",
-        components: { VueHeadful, PulseLoader },
+        components: {VueHeadful, PulseLoader},
         props: {
-            slug: { type: String, required: true }
+            slug: {type: String, required: true}
         },
         data() {
             return {
@@ -87,12 +100,24 @@
                 }
             }
         },
+        methods: {
+            displayInterventionForm(intervention = null) {
+                this.$modal.show(InterventionForm, {
+                    client: this.client,
+                    intervention: intervention
+                })
+            },
+            handleModalClose() {
+                this.$apollo.queries.client.refetch()
+            }
+        }
     }
 </script>
 
 <style lang="scss" scoped>
     .client-page {
         margin-top: $navbar-height;
+
         .container {
             margin: 0 auto;
             padding: 40px;
@@ -103,6 +128,7 @@
                 flex-direction: column;
             }
         }
+
         .jumbotron {
             display: flex;
             flex-direction: column;
@@ -112,10 +138,12 @@
             width: 100%;
             background-color: cornflowerblue;
             color: white;
+
             h1 {
                 margin: 0 auto;
             }
         }
+
         .timeline {
             display: flex;
             flex-grow: 2;
@@ -128,10 +156,12 @@
             @include breakpoint(mobile) {
                 padding: 0 0 0 10px;
             }
+
             .intervention-list {
                 list-style: none;
                 padding: 0;
                 width: 100%;
+
                 .intervention-item {
                     text-align: center;
                     box-shadow: 10px 12px 15px -18px #b9b9b9;
@@ -139,15 +169,27 @@
                     background-color: white;
                     border-radius: 4px;
                     margin-bottom: 10px;
+                    .actions {
+                        svg {
+                            width: 30px;
+                            height: 100%;
+                            transform: scale3d(0.8, 0.8, 0.8);
+                            margin-left: 16px;
+                            display: inline-block;
+                        }
+                    }
                 }
+
                 & :last-child {
                     margin-bottom: 0;
                 }
             }
+
             h2 {
                 display: flex;
                 justify-content: space-between;
             }
+
             .intervention-action-creation {
                 text-align: right;
                 border: none;
@@ -156,11 +198,13 @@
                 cursor: pointer;
             }
         }
+
         .referrer-list {
             display: flex;
             flex-grow: 1;
             flex-direction: column;
             margin-top: 20px;
+
             .referrer-item {
                 box-shadow: 10px 12px 15px -18px #b9b9b9;
                 background-color: white;

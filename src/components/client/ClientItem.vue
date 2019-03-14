@@ -1,6 +1,6 @@
 <template>
     <li class="client-item">
-        <v-dialog/>
+        <v-dialog name="delete-client"/>
         <router-link :to="{ name: 'client.view', params: { slug: client.slug } }">
             {{ client.name }}
         </router-link>
@@ -8,16 +8,22 @@
             <p>Adresse: {{ client.address }}, {{ client.zipCode }}</p>
             <div class="interventions-count">
                 <p>Crée le : {{ client.createdAt }}</p>
-                <p> Mis à jour le  :
+                <p> Mis à jour le :
                     <span v-if="client.updatedAt">{{client.updatedAt}}</span>
                     <span v-else>aucune modifications.</span>
                 </p>
             </div>
         </div>
         <div class="actions">
-            <router-link :to="{ name: 'client.edit', params: { slug: client.slug } }"><icon name="edit"></icon></router-link>
-            <router-link :to="{ name: 'client.view', params: { slug: client.slug } }"><icon name="eye"></icon></router-link>
-            <a href="#" @click.prevent="confirmDelete"><icon name="trash"></icon></a>
+            <router-link :to="{ name: 'client.edit', params: { slug: client.slug } }">
+                <icon name="edit"></icon>
+            </router-link>
+            <router-link :to="{ name: 'client.view', params: { slug: client.slug } }">
+                <icon name="eye"></icon>
+            </router-link>
+            <a href="#" @click.prevent="confirmDelete">
+                <icon name="trash"></icon>
+            </a>
         </div>
     </li>
 </template>
@@ -30,7 +36,7 @@
         },
         methods: {
             confirmDelete() {
-                this.$modal.show('dialog', {
+                this.$modal.show('delete-client', {
                     title: 'Confirmer la suppression',
                     text: 'Voulez vous vraiment supprimer ce client ? 😱',
                     buttons: [
@@ -47,7 +53,7 @@
             },
             handleDelete() {
                 this.$apollo.mutate({
-                    mutation: require('../../graphql/mutations/DeleteClientMutation.graphql'),
+                    mutation: require('../../graphql/mutations/client/DeleteClientMutation.graphql'),
                     variables: {input: {id: this.client.id}}
                 }).then(() => {
                     this.$toasted.show('🗑 Le client à bien été supprimé.', {
@@ -79,9 +85,11 @@
         height: 250px;
         width: 400px;
         margin-bottom: 30px;
+
         &:hover {
-             box-shadow: 10px 15px 15px -7px #b9b9b9;
-         }
+            box-shadow: 10px 15px 15px -7px #b9b9b9;
+        }
+
         .client-infos {
             display: inherit;
             flex-flow: inherit;
@@ -89,6 +97,7 @@
             text-align: left;
             margin-top: 15px;
         }
+
         @include breakpoint(mobile) {
             width: 100%;
             margin-right: 0;
@@ -96,11 +105,13 @@
         @include breakpoint(tablet) {
             margin-right: 10px;
         }
+
         .actions {
             position: absolute;
             bottom: 15px;
             right: 0;
             left: 0;
+
             svg {
                 width: 30px;
                 height: 100%;
@@ -108,6 +119,7 @@
                 margin-left: 16px;
                 display: inline-block;
             }
+
             .button-primary {
                 border: none;
                 background-color: white;

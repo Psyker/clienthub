@@ -7,6 +7,7 @@ import Dashboard from "../views/user/Dashboard";
 import {loginGuard} from "./guards";
 import NewClientView from "../views/client/NewClientView";
 import EditClientView from "../views/client/EditClientView"
+import EditInterventionView from "../views/intervention/EditInterventionView";
 
 Vue.use(Router);
 
@@ -35,6 +36,21 @@ const router = new Router({
       props: true,
       name: 'client.edit',
       component: EditClientView,
+    },
+    {
+      path: '/client/:slug/intervention/new',
+      props: true,
+      name: 'intervention.new',
+      component: EditInterventionView
+    },
+    {
+      path: '/client/:slug/intervention/:id/edit',
+      props: true,
+      name: 'intervention.edit',
+      component: EditInterventionView
+    },
+    {
+      path: '/client/'
     },
     {
       path: '/dashboard',

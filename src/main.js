@@ -18,7 +18,7 @@ Vue.config.productionTip = false;
 Vue.component("vue-headful", vueHeadful);
 Vue.use(Feather);
 Vue.use(Toasted);
-Vue.use(VueJSModal, {dialog: true});
+Vue.use(VueJSModal, { dynamic: true, injectModalsContainer: true });
 Vue.use(VueMoment );
 
 new Vue({
