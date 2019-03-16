@@ -50,9 +50,6 @@ const router = new Router({
       component: EditInterventionView
     },
     {
-      path: '/client/'
-    },
-    {
       path: '/dashboard',
       name: 'user.dashboard',
       component: Dashboard
