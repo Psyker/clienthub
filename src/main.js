@@ -7,7 +7,7 @@ import Toasted from 'vue-toasted'
 import store from "./store"
 import { createProvider } from './vue-apollo'
 import VueMoment from 'vue-moment'
-
+import BootstrapVue from 'bootstrap-vue'
 import "./assets/scss/app.scss"
 import VueJSModal from "vue-js-modal";
 
@@ -18,8 +18,12 @@ Vue.config.productionTip = false;
 Vue.component("vue-headful", vueHeadful);
 Vue.use(Feather);
 Vue.use(Toasted);
-Vue.use(VueJSModal, { dynamic: true, injectModalsContainer: true });
-Vue.use(VueMoment );
+Vue.use(VueJSModal, {
+  dynamic: true,
+  injectModalsContainer: true
+});
+Vue.use(VueMoment);
+Vue.use(BootstrapVue);
 
 new Vue({
   router,

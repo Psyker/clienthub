@@ -17,7 +17,7 @@
     import ClientForm from "../../components/client/form/ClientForm";
 
     export default {
-        name: "EditClientView",
+        name: "edit-client-page",
         components: {ClientForm},
         props: {
             slug: {type: String, required: false}

@@ -7,7 +7,6 @@
                 <h3>Liste des clients</h3>
                 <router-link :to="{ name: 'client.new' }">Ajouter un client</router-link>
             </div>
-            <client-list/>
         </div>
 
     </main>
@@ -16,7 +15,6 @@
 <script>
     // @ is an alias to /src
     import VueHeadful from "vue-headful";
-    import ClientList from "../../components/client/ClientList"
 
     export default {
         name: 'dashboard',
@@ -25,7 +23,6 @@
         },
         components: {
             VueHeadful,
-            ClientList
         },
     }
 </script>

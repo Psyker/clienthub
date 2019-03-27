@@ -56,7 +56,6 @@
 <script>
     import VueHeadful from "vue-headful";
     import PulseLoader from 'vue-spinner/src/PulseLoader'
-    import InterventionForm from '../../components/intervention/form/InterventionForm'
 
     export default {
         name: "client-view",
@@ -100,17 +99,6 @@
                 }
             }
         },
-        methods: {
-            displayInterventionForm(intervention = null) {
-                this.$modal.show(InterventionForm, {
-                    client: this.client,
-                    intervention: intervention
-                })
-            },
-            handleModalClose() {
-                this.$apollo.queries.client.refetch()
-            }
-        }
     }
 </script>
 

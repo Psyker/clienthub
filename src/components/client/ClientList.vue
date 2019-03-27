@@ -1,5 +1,6 @@
 <template>
-    <PulseLoader v-if="$apollo.queries.clients.loading" color="cornflowerblue"/>
+    <b-table v-if="items" striped hover :items="items" :fields="fields" />
+    <!--<PulseLoader v-if="$apollo.queries.clients.loading" color="cornflowerblue"/>
     <ul class="client-list" v-else-if="clients && clients.edges.length > 0">
         <ClientItem v-for="client in clients.edges"
                     :client="client.node"
@@ -9,7 +10,7 @@
     </ul>
     <div v-else-if="clients && clients.edges.length === 0">
         Aucun clients, pour le moment ;)
-    </div>
+    </div>-->
 </template>
 
 <script>
@@ -21,6 +22,33 @@
             ClientItem,
             PulseLoader
         },
+        data() {
+            return {
+                fields: {
+                    name: {
+                        label: "Nom de l'entreprise",
+                        sortable: true
+                    },
+                    address: {
+                        label: "Adresse",
+                        sortable: false,
+                    },
+                    zipCode: {
+                        label: "Code postal",
+                        sortable: true
+                    },
+                    createdAt: {
+                        label: "Date de création",
+                        sortable: true
+                    },
+                    updatedAt: {
+                        label: "Date de mise à jour",
+                        sortable: true
+                    }
+                },
+                items: []
+            }
+        },
         methods: {
             onDelete() {
                 this.$apollo.queries.clients.refetch()
@@ -29,6 +57,17 @@
         apollo: {
             clients: {
                 query: require('../../graphql/queries/client/ClientList.graphql'),
+                result({data: { clients } }) {
+                    this.items = clients.edges.map((node) => {
+                        return {
+                            name: node.node.name,
+                            address: node.node.address,
+                            zipCode: node.node.zipCode,
+                            createdAt: node.node.createdAt,
+                            updatedAt: node.node.updatedAt
+                        }
+                    })
+                }
             }
         }
     }
