@@ -8,7 +8,7 @@
                     </div>
                     <div class="header-toolbar">
                         <div class="toolbar-wrapper">
-                            <div class="toolbar-item">Ajouter un client</div>
+                            <b-link class="toolbar-item" :to="{name: 'client.new'}">Ajouter un client</b-link>
                         </div>
                     </div>
                 </div>
@@ -16,16 +16,16 @@
             <div class="divider"></div>
         </b-row>
         <b-row>
-            <client-list/>
+            <client-table-list/>
         </b-row>
     </b-container>
 </template>
 
 <script>
-    import ClientList from "../../components/client/ClientList";
+    import ClientTableList from "../../components/client/ClientTableList";
     export default {
         name: "clients-page",
-        components: {ClientList}
+        components: {ClientTableList}
     }
 </script>
 
@@ -51,6 +51,10 @@
             & .header-toolbar {
                 display: flex;
                 justify-content: flex-end;
+                .toolbar-item {
+                    color: black;
+                    text-decoration: none;
+                }
             }
         }
     }

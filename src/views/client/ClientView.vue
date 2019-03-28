@@ -1,14 +1,69 @@
 <template>
-    <main class="client-page">
+    <b-container fluid>
+        <b-row>
+            <b-col class="sidebar" cols="3">
+                <div class="sidebar-card">
+                    <b-row class="horizontaly-centered">
+                        <div>
+                            <icon name="home"/>
+                            <h2>Vaillant et Fils</h2>
+                            <b-link>www.site.com</b-link>
+                        </div>
+                    </b-row>
+                    <b-row>
+
+                    </b-row>
+                </div>
+                <div class="sidebar-list text-left">
+                    <h3>À propos de ce client :</h3>
+                    <b-list-group>
+                        <b-list-group-item>
+                            <small>Nom</small>
+                            <p><b>Dapibus ac facilisis in</b></p>
+                        </b-list-group-item>
+                        <b-list-group-item>
+                            <small>Adresse</small>
+                            <p><b>17 Rue Saint Louis, Villemomble</b></p>
+                        </b-list-group-item>
+                        <b-list-group-item>
+                            <small>Code postal</small>
+                            <p><b>93150</b></p>
+                        </b-list-group-item>
+                    </b-list-group>
+                </div>
+            </b-col>
+            <b-col cols="6">2 of 3 (wider)</b-col>
+            <b-col class="sidebar">
+                <div class="sidebar-list contact-list">
+                    <h3 class="text-left">Contacts</h3>
+                    <b-list-group>
+                        <b-list-group-item class="text-left">
+                            <p><icon name="user"/>Nom Prénom: <span class="highlight">Jean DuJardin</span></p>
+                            <p><icon name="award"/>Poste: Développeur</p>
+                            <p><icon name="mail"/>Email: <span class="highlight">jean@gmail.com</span></p>
+                        </b-list-group-item>
+                    </b-list-group>
+                    <b-button variant="primary">Ajouter un contact</b-button>
+                </div>
+            </b-col>
+        </b-row>
+    </b-container>
+    <!--<main>
         <PulseLoader v-if="this.$apollo.queries.client.loading" color="cornflowerblue"/>
         <div v-else-if="client">
             <vue-headful :title="'ClientHub - ' + client.name"></vue-headful>
-            <div class="jumbotron">
+            &lt;!&ndash;<div class="jumbotron">
                 <h1>{{ client.name }}</h1>
                 <div>Crée le {{client.createdAt|moment("DD/MM/YYYY")}}</div>
                 <div v-if="client.updatedAt">Mis à jour le {{client.updatedAt|moment("DD/MM/YYYY")}}</div>
+            </div>&ndash;&gt;
+            <div>
+                <b-jumbotron text-variant="white"
+                             :header="client.name"
+                             :lead="'Crée le ' + client.createdAt|moment('DD/MM/YYYY')"
+                />
             </div>
-            <div class="container">
+            <b-container>
                 <div class="referrer-list">
                     <h2>Référrants</h2>
                     <div class="referrer-item" v-for="referrer in client.referrers" :key="referrer.id">
@@ -48,18 +103,17 @@
                     </div>
                     <p v-if="orderedInterventions.length === 0">Aucune interventions.</p>
                 </div>
-            </div>
+            </b-container>
         </div>
-    </main>
+    </main>-->
 </template>
 
 <script>
     import VueHeadful from "vue-headful";
-    import PulseLoader from 'vue-spinner/src/PulseLoader'
 
     export default {
         name: "client-view",
-        components: {VueHeadful, PulseLoader},
+        components: {VueHeadful},
         props: {
             slug: {type: String, required: true}
         },
@@ -103,102 +157,56 @@
 </script>
 
 <style lang="scss" scoped>
-    .client-page {
-        margin-top: $navbar-height;
-
-        .container {
-            margin: 0 auto;
-            padding: 40px;
-            display: flex;
-            flex-direction: row-reverse;
-            justify-content: space-around;
-            @include breakpoint(mobile) {
-                flex-direction: column;
+    .sidebar {
+        h3 {
+            font-size: 16px;
+        }
+        padding: 0;
+        height: calc(100vh - 40px);
+        border-right: 1px solid lightgrey;
+        background-color: white;
+        .sidebar-card {
+            padding: 30px;
+            border-bottom: 1px solid lightgrey;
+            h2 {
+                margin-top: 8px;
+                font-size: 24px;
             }
         }
-
-        .jumbotron {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 400px;
-            width: 100%;
-            background-color: cornflowerblue;
-            color: white;
-
-            h1 {
-                margin: 0 auto;
-            }
-        }
-
-        .timeline {
-            display: flex;
-            flex-grow: 2;
-            flex-direction: column;
-            justify-content: center;
-            text-align: left;
-            padding: 0 50px 0px 10px;
-            margin-top: 20px;
-            border-left: 5px solid cornflowerblue;
-            @include breakpoint(mobile) {
-                padding: 0 0 0 10px;
-            }
-
-            .intervention-list {
-                list-style: none;
-                padding: 0;
-                width: 100%;
-
-                .intervention-item {
-                    text-align: center;
-                    box-shadow: 10px 12px 15px -18px #b9b9b9;
-                    padding: 20px;
-                    background-color: white;
-                    border-radius: 4px;
+        .sidebar-list {
+            padding: 20px;
+            &.contact-list {
+                border-bottom: 1px solid lightgrey;
+                .list-group-item {
+                    svg.icon {
+                        width: 20px;
+                        height: 20px;
+                        margin-right: 0.5rem;
+                        color: black;
+                    }
+                    border: 1px solid lightgrey;
+                    padding: 10px;
                     margin-bottom: 10px;
-                    .actions {
-                        svg {
-                            width: 30px;
-                            height: 100%;
-                            transform: scale3d(0.8, 0.8, 0.8);
-                            margin-left: 16px;
-                            display: inline-block;
-                        }
+                    .highlight {
+                        color: cornflowerblue;
                     }
                 }
-
-                & :last-child {
+            }
+            .list-group-item {
+                border: none;
+                padding-left: 0;
+                padding-bottom: 0;
+                p {
                     margin-bottom: 0;
                 }
             }
-
-            h2 {
-                display: flex;
-                justify-content: space-between;
-            }
-
-            .intervention-action-creation {
-                text-align: right;
-                border: none;
-                font-size: 14px;
-                background-color: whitesmoke;
-                cursor: pointer;
-            }
-        }
-
-        .referrer-list {
-            display: flex;
-            flex-grow: 1;
-            flex-direction: column;
-            margin-top: 20px;
-
-            .referrer-item {
-                box-shadow: 10px 12px 15px -18px #b9b9b9;
-                background-color: white;
-                padding: 20px;
-            }
         }
     }
-
+    .horizontaly-centered {
+        justify-content: center;
+    }
+    svg.icon {
+        width: 60px;
+        height: 60px;
+    }
 </style>

@@ -57,6 +57,7 @@
 
 <style scoped lang="scss">
     .navbar {
+        @include navbarShadow();
         padding: 0.5rem 5rem;
         svg.icon {
             display: inline;

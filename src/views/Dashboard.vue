@@ -1,26 +1,38 @@
 <template>
-    <main class="container">
-        <div class="home-page">
-            <vue-headful title="ClientHub - Dashboard"></vue-headful>
-            <h1>Dashboard</h1>
-            <div class="module-header">
-                <h3>Liste des clients</h3>
-                <router-link :to="{ name: 'client.new' }">Ajouter un client</router-link>
-            </div>
-        </div>
+    <b-container class="mt-5">
+        <vue-headful title="ClientHub - Dashboard"></vue-headful>
+        <b-row class="horizontaly-centered">
+            <b-card-group deck>
+                <b-card
+                        title="Nombre de clients"
+                        tag="article"
+                        style="max-width: 20rem;"
+                        class="mb-2"
+                >
+                    <b-card-text>
+                        <b>10</b>
+                    </b-card-text>
+                </b-card>
+                <b-card
+                        title="Nombre d'interventions"
+                        tag="article"
+                        style="max-width: 20rem;"
+                        class="mb-2"
+                >
+                    <b-card-text>
+                        <b>30</b>
+                    </b-card-text>
+                </b-card>
+            </b-card-group>
 
-    </main>
+        </b-row>
+    </b-container>
 </template>
 
 <script>
-    // @ is an alias to /src
     import VueHeadful from "vue-headful";
-
     export default {
         name: 'dashboard',
-        props: {
-            slug: {type: String, required: false}
-        },
         components: {
             VueHeadful,
         },
@@ -28,14 +40,8 @@
 </script>
 
 <style lang="scss" scoped>
-    .module-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 0px 190px;
-        @include breakpoint(mobile) {
-            padding: 0;
-        }
+    .horizontaly-centered {
+        justify-content: center;
     }
 </style>
 

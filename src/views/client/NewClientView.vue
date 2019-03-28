@@ -1,11 +1,9 @@
 <template>
-    <main class="container">
+    <b-container>
         <vue-headful title="ClientHub - Création client"></vue-headful>
-        <div class="creation-page">
             <h1>Ajouter un nouveau client</h1>
             <ClientForm v-on:created="onCreate" />
-        </div>
-    </main>
+    </b-container>
 </template>
 
 <script>
@@ -31,7 +29,4 @@
 </script>
 
 <style lang="scss" scoped>
-    .creation-page {
-        margin-top: $navbar-height;
-    }
 </style>
