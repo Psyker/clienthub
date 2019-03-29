@@ -1,9 +1,7 @@
 <template>
-    <b-navbar toggleable="lg" type="light" variant="light" tag="nav">
+    <b-navbar toggleable="lg" type="dark" tag="nav">
         <b-navbar-brand :to="{name: 'home'}">ClientHub</b-navbar-brand>
-
         <b-navbar-toggle target="nav_collapse" />
-
         <b-collapse is-nav id="nav_collapse">
             <b-navbar-nav>
                 <b-nav-item v-if="isLoggedIn && viewer" :to="{name: 'user.dashboard'}">Dashboard</b-nav-item>
@@ -57,8 +55,9 @@
 
 <style scoped lang="scss">
     .navbar {
-        @include navbarShadow();
+        background-color: #33475B;
         padding: 0.5rem 5rem;
+        color: white;
         svg.icon {
             display: inline;
             width: 20px;
