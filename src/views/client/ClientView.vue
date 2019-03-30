@@ -1,5 +1,5 @@
 <template>
-    <b-container fluid>
+    <b-container fluid v-if="!$apollo.queries.client.loading">
         <vue-headful title="ClientHub - Client" ></vue-headful>
         <b-row>
             <b-col class="sidebar" cols="3">
@@ -23,8 +23,20 @@
                             <p><b>{{client.name}}</b></p>
                         </b-list-group-item>
                         <b-list-group-item>
+                            <small>Description</small>
+                            <p><b>{{client.description}}</b></p>
+                        </b-list-group-item>
+                        <b-list-group-item>
+                            <small>Secteur d'activité</small>
+                            <p><b>{{client.businessSegment.name}}</b></p>
+                        </b-list-group-item>
+                        <b-list-group-item>
                             <small>Adresse</small>
                             <p><b>{{client.address}}</b></p>
+                        </b-list-group-item>
+                        <b-list-group-item>
+                            <small>Ville</small>
+                            <p><b>{{client.city}}</b></p>
                         </b-list-group-item>
                         <b-list-group-item>
                             <small>Code postal</small>
@@ -90,6 +102,7 @@
             </b-col>
         </b-row>
     </b-container>
+    <b-spinner class="spinner" v-else variant="dark" label="Spinning" type="grow" />
 </template>
 
 <script>
@@ -207,6 +220,12 @@
             width: 20px;
             height: 20px;
         }
+    }
+
+    .spinner {
+        margin: 0 auto;
+        height: 200px;
+        width: 200px;
     }
 
     .overflow-scroll {

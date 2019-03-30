@@ -22,13 +22,14 @@ const router = new Router({
       component: Home
     },
     {
-      path: '/client/:slug',
+      path: '/client/:slug/view',
       name: 'client.view',
       component: ClientView,
       props: true,
     },
     {
       path: '/client/new',
+      exact: true,
       name: 'client.new',
       component: NewClientView,
     },

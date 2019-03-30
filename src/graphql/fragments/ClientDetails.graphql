@@ -1,9 +1,14 @@
 fragment ClientDetails on Client {
     id
     name
+    description
     address
+    city
     zipCode
     slug
+    businessSegment {
+        name
+    }
     createdAt
     updatedAt
 }

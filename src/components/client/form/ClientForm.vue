@@ -10,11 +10,19 @@
         </b-form-group>
         <b-form-group id="address-input-group" label="Adresse du client" label-for="address-input">
             <b-form-input
-                    id="exampleInput2"
+                    id="adress-input"
                     type="text"
                     v-model="form.address"
                     required
-                    placeholder="17 Rue des Bois, Paris" />
+                    placeholder="17 Rue des Bois" />
+        </b-form-group>
+        <b-form-group id="city-input-group" label="Ville du client" label-for="city-input">
+            <b-form-input
+                    id="city-input"
+                    type="text"
+                    v-model="form.city"
+                    required
+                    placeholder="Paris" />
         </b-form-group>
         <b-form-group id="zipcode-input-group" label="Code postal" label-for="zipcode-input">
             <b-form-input
@@ -23,6 +31,15 @@
                     v-model="form.zipCode"
                     required
                     placeholder="75002" />
+        </b-form-group>
+        <b-form-group id="description-input-group" label="Description" label-for="description-input">
+            <b-form-textarea
+                    v-model="form.description"
+                    id="description-input"
+                    placeholder="Description du client ..."
+                    rows="3"
+                    max-rows="8"
+            ></b-form-textarea>
         </b-form-group>
         <b-button type="submit" :disabled="loading" variant="primary">
             <b v-if="!loading">Sauvegarder</b>
@@ -42,6 +59,8 @@
                 form: {
                     name: '',
                     address: '',
+                    city: '',
+                    description: '',
                     zipCode: null,
                 },
                 loading: false,
@@ -53,6 +72,8 @@
                 this.form.name = this.client.name;
                 this.form.address = this.client.address;
                 this.form.zipCode = this.client.zipCode;
+                this.form.city = this.client.city;
+                this.form.description = this.client.description;
             }
         },
         methods: {
@@ -61,13 +82,23 @@
                     this.form.name = '';
                     this.form.address = '';
                     this.form.zipCode = '';
+                    this.form.city = '';
+                    this.form.description = '';
                     this.$emit('created')
                 } else {
                     this.$emit('edited')
                 }
             },
             handleSubmit() {
-                let params = {input: {name: this.form.name, address: this.form.address, zip_code: this.form.zipCode}};
+                let params = {
+                    input: {
+                        name: this.form.name,
+                        address: this.form.address,
+                        zip_code: this.form.zipCode,
+                        city: this.form.city,
+                        description: this.form.description
+                    }
+                };
                 if (this.client) {
                     params.input.client = this.client.slug;
                 }
