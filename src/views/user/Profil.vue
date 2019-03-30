@@ -4,7 +4,7 @@
 
 <script>
     export default {
-        name: "new-intervention-view"
+        name: "Profil"
     }
 </script>
 
