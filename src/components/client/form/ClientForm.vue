@@ -1,65 +1,104 @@
 <template>
-    <main>
-        <form @submit.prevent="handleSubmit" class="client-form" method="post">
-            <div class="form-input">
-                <label for="name">Nom du client</label>
-                <input id="name" name="name" placeholder="Nom du client" type="text" v-model="name">
-            </div>
-            <div class="form-input">
-                <label for="address">Adresse du client</label>
-                <input id="address" name="address" placeholder="Adresse du client" type="text" v-model="address">
-            </div>
-            <div class="form-input">
-                <label for="zipCode">Code postal</label>
-                <input id="zipCode" name="zipCode" placeholder="Code postal" type="text" v-model="zipCode">
-            </div>
-            <button :disabled="loading" @submit.prevent="handleSubmit" class="button-primary"
-                    type="submit">
-                <PulseLoader color="cornflowerblue" v-if="loading"/>
-                <span v-else>Sauvegarder</span>
-            </button>
-            <div v-if="gqlError">{{gqlError}}</div>
-        </form>
-    </main>
+    <b-form @submit.prevent="handleSubmit">
+        <b-form-group id="name-input-group" label="Nom" label-for="name-input">
+            <b-form-input
+                    id="name-input"
+                    type="text"
+                    v-model="form.name"
+                    required
+                    placeholder="Nom du client" />
+        </b-form-group>
+        <b-form-group id="address-input-group" label="Adresse du client" label-for="address-input">
+            <b-form-input
+                    id="adress-input"
+                    type="text"
+                    v-model="form.address"
+                    required
+                    placeholder="17 Rue des Bois" />
+        </b-form-group>
+        <b-form-group id="city-input-group" label="Ville du client" label-for="city-input">
+            <b-form-input
+                    id="city-input"
+                    type="text"
+                    v-model="form.city"
+                    required
+                    placeholder="Paris" />
+        </b-form-group>
+        <b-form-group id="zipcode-input-group" label="Code postal" label-for="zipcode-input">
+            <b-form-input
+                    id="zipcode-input"
+                    type="number"
+                    v-model="form.zipCode"
+                    required
+                    placeholder="75002" />
+        </b-form-group>
+        <b-form-group id="description-input-group" label="Description" label-for="description-input">
+            <b-form-textarea
+                    v-model="form.description"
+                    id="description-input"
+                    placeholder="Description du client ..."
+                    rows="3"
+                    max-rows="8"
+            ></b-form-textarea>
+        </b-form-group>
+        <b-button type="submit" :disabled="loading" variant="primary">
+            <b v-if="!loading">Sauvegarder</b>
+            <b-spinner v-else variant="light" label="Spinning" />
+        </b-button>
+    </b-form>
 </template>
 
 <script>
-    import PulseLoader from 'vue-spinner/src/PulseLoader'
     export default {
         name: "client-form",
-        components: {PulseLoader},
         props: {
             client: {type: Object, required: false}
         },
         data() {
             return {
-                name: '',
-                address: '',
-                zipCode: '',
+                form: {
+                    name: '',
+                    address: '',
+                    city: '',
+                    description: '',
+                    zipCode: null,
+                },
                 loading: false,
                 gqlError: null
             }
         },
         created() {
             if (this.client) {
-                this.name = this.client.name;
-                this.address = this.client.address;
-                this.zipCode = this.client.zipCode;
+                this.form.name = this.client.name;
+                this.form.address = this.client.address;
+                this.form.zipCode = this.client.zipCode;
+                this.form.city = this.client.city;
+                this.form.description = this.client.description;
             }
         },
         methods: {
             done() {
                 if (!this.client) {
-                    this.name = '';
-                    this.address = '';
-                    this.zipCode = '';
+                    this.form.name = '';
+                    this.form.address = '';
+                    this.form.zipCode = '';
+                    this.form.city = '';
+                    this.form.description = '';
                     this.$emit('created')
                 } else {
                     this.$emit('edited')
                 }
             },
             handleSubmit() {
-                let params = {input: {name: this.name, address: this.address, zip_code: this.zipCode}};
+                let params = {
+                    input: {
+                        name: this.form.name,
+                        address: this.form.address,
+                        zip_code: this.form.zipCode,
+                        city: this.form.city,
+                        description: this.form.description
+                    }
+                };
                 if (this.client) {
                     params.input.client = this.client.slug;
                 }
@@ -79,53 +118,4 @@
 </script>
 
 <style lang="scss" scoped>
-    main {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-content: center;
-
-        .client-form {
-            display: flex;
-            flex-direction: column;
-            margin: 0 auto;
-            width: 70%;
-            @include breakpoint(mobile) {
-                width: 100%;
-            }
-            & button {
-                background: white;
-                border: none;
-                padding: 20px 30px;
-                cursor: pointer;
-                margin: 0 auto;
-                border-radius: 3px;
-
-                .loader {
-                    margin: 0 auto;
-                }
-            }
-
-            & .form-input {
-                position: relative;
-                display: flex;
-                flex-direction: column;
-                margin-bottom: 20px;
-                & input {
-                    width: 100%;
-                    padding: 10px;
-                    border-radius: 3px;
-                    border: 1px solid darken(white, 5%);
-                    @include breakpoint(desktop) {
-                        width: 100%;
-                    }
-                }
-                & label {
-                    margin-bottom: 5px;
-                    text-align: left;
-                }
-            }
-        }
-    }
-
 </style>
