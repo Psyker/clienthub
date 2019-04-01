@@ -1,5 +1,5 @@
 <template>
-    <b-form @submit.prevent="handleSubmit">
+    <b-form @submit.prevent="handleSubmit" method="post">
         <b-form-group id="name-input-group" label="Nom" label-for="name-input">
             <b-form-input
                     id="name-input"
@@ -7,6 +7,15 @@
                     v-model="form.name"
                     required
                     placeholder="Nom du client" />
+        </b-form-group>
+        <b-form-group id="segment-input-group" label="Secteur d'activité" label-for="segment-input">
+            <b-form-select
+                    v-model="form.businessSegments.selected"
+                    :options="form.businessSegments.options"
+                    required
+                    id="segment-input"
+            >
+            </b-form-select>
         </b-form-group>
         <b-form-group id="address-input-group" label="Adresse du client" label-for="address-input">
             <b-form-input
@@ -62,6 +71,10 @@
                     city: '',
                     description: '',
                     zipCode: null,
+                    businessSegments: {
+                        selected: null,
+                        options: []
+                    }
                 },
                 loading: false,
                 gqlError: null
@@ -74,6 +87,17 @@
                 this.form.zipCode = this.client.zipCode;
                 this.form.city = this.client.city;
                 this.form.description = this.client.description;
+                this.form.businessSegments.selected = this.client.businessSegment.name
+            }
+        },
+        apollo: {
+            businessSegments: {
+                query: require('../../../graphql/queries/BusinessSegmentsQuery.graphql'),
+                result({data: {businessSegments}}) {
+                    this.form.businessSegments.options = businessSegments.map(segment => {
+                        return {value: segment.name, text: segment.name}
+                    })
+                }
             }
         },
         methods: {
@@ -99,6 +123,7 @@
                         description: this.form.description
                     }
                 };
+                this.loading = true;
                 if (this.client) {
                     params.input.client = this.client.slug;
                 }

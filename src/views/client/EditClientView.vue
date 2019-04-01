@@ -1,11 +1,10 @@
 <template>
     <ApolloQuery :query="require('../../graphql/queries/client/ClientViewQuery.graphql')" :variables="{slug}">
-        <template slot-scope="{ result: { data, loading, gqlError } }">
+        <template slot-scope="{ result: { data, loading } }">
             <vue-headful v-if="data && data.client" :title="'ClientHub - Édition ' + data.client.name"></vue-headful>
             <b-container>
                 <h1>Éditer le client</h1>
-                <ClientForm v-on:edited="onEdit" v-if="data && data.client" :client="data.client"/>
-                <div v-else>{{gqlError}}</div>
+                <ClientForm v-on:edited="onEdit" v-if="data && data.client && !loading" :client="data.client"/>
             </b-container>
         </template>
     </ApolloQuery>
@@ -32,7 +31,6 @@
                 setTimeout(() => {
                     this.$router.push('/dashboard')
                 }, 1600)
-
             },
         }
     }

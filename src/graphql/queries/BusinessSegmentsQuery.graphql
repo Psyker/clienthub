@@ -1,0 +1,5 @@
+query BusinessSegments {
+    businessSegments {
+        name
+    }
+}

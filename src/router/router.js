@@ -8,6 +8,7 @@ import {loginGuard} from "./guards";
 import NewClientView from "../views/client/NewClientView";
 import EditClientView from "../views/client/EditClientView"
 import EditInterventionView from "../views/intervention/EditInterventionView";
+import NewInterventionView from "../views/intervention/NewInterventionView";
 import ClientsView from "../views/client/ClientsView";
 
 Vue.use(Router);
@@ -43,7 +44,7 @@ const router = new Router({
       path: '/client/:slug/intervention/new',
       props: true,
       name: 'intervention.new',
-      component: EditInterventionView
+      component: NewInterventionView
     },
     {
       path: '/client/:slug/intervention/:id/edit',

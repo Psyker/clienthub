@@ -4,6 +4,7 @@ query InterventionTypes {
             node {
                 id
                 name
+                slug
             }
         }
     }
