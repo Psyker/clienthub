@@ -1,10 +1,16 @@
-#import "../../fragments/ClientDetails.graphql"
-
 query ClientList {
     clients {
         edges {
             node {
-                ...ClientDetails
+                id
+                name
+                description
+                address
+                city
+                zipCode
+                slug
+                createdAt
+                updatedAt
             }
         }
     }

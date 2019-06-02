@@ -24,7 +24,10 @@
                         </b-list-group-item>
                         <b-list-group-item>
                             <small>Description</small>
-                            <p><b>{{client.description}}</b></p>
+                            <p>
+                                <b>{{this.currentDescription}}</b>
+                                <button v-if="!readMore" v-on:click="handleReadMore">...</button>
+                            </p>
                         </b-list-group-item>
                         <b-list-group-item>
                             <small>Secteur d'activité</small>
@@ -41,6 +44,10 @@
                         <b-list-group-item>
                             <small>Code postal</small>
                             <p><b>{{client.zipCode}}</b></p>
+                        </b-list-group-item>
+                        <b-list-group-item>
+                            <small>Téléphone</small>
+                            <p><b>{{client.phone}}</b></p>
                         </b-list-group-item>
                         <b-list-group-item>
                             <small>Date d'ajout</small>
@@ -117,7 +124,17 @@
         data() {
             return {
                 client: null,
+                readMore: false,
+                currentDescription: '',
                 orderedInterventions: []
+            }
+        },
+        methods: {
+            handleReadMore() {
+                this.readMore = !this.readMore;
+                this.currentDescription = this.client.description;
+
+                return true;
             }
         },
         apollo: {
@@ -146,8 +163,9 @@
                                 interventions: [intervention.node]
                             })
                         }
+                        this.currentDescription = client.description.substr(0, 50)
                     });
-                }
+                },
             }
         },
     }

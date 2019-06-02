@@ -5,8 +5,12 @@ mutation EditClientMutation($input: EditClientInput!) {
             name
             address
             zipCode
+            businessSegment
+            city
+            description
             createdAt
             updatedAt
+            phone
         }
     }
 }

@@ -9,6 +9,7 @@ import { createProvider } from './vue-apollo'
 import VueMoment from 'vue-moment'
 import BootstrapVue from 'bootstrap-vue'
 import "./assets/scss/app.scss"
+import 'vue-tel-input/dist/vue-tel-input.css';
 import VModal from "vue-js-modal";
 
 export const EventBus = new Vue();
