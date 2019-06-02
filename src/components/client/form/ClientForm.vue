@@ -16,6 +16,7 @@
                     id="segment-input"
             >
             </b-form-select>
+        </b-form-group>
         <b-form-group id="phone-input-group" label="Téléphone" label-for="phone-input">
             <vue-tel-input v-model="form.phone"></vue-tel-input>
         </b-form-group>
