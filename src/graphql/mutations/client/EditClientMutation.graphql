@@ -7,6 +7,7 @@ mutation EditClientMutation($input: EditClientInput!) {
             zipCode
             createdAt
             updatedAt
+            phone
         }
     }
 }

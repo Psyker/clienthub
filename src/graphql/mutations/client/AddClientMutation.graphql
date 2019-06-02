@@ -5,6 +5,8 @@ mutation AddClientMutation($input: CreateClientInput!) {
             name
             address
             zipCode
+            city
+            description
             createdAt
             updatedAt
         }

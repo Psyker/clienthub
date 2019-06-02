@@ -8,6 +8,9 @@
                     required
                     placeholder="Nom du client" />
         </b-form-group>
+        <b-form-group id="phone-input-group" label="Téléphone" label-for="phone-input">
+            <vue-tel-input v-model="form.phone"></vue-tel-input>
+        </b-form-group>
         <b-form-group id="address-input-group" label="Adresse du client" label-for="address-input">
             <b-form-input
                     id="adress-input"
@@ -49,7 +52,12 @@
 </template>
 
 <script>
+    import VueTelInput from 'vue-tel-input';
+
     export default {
+        components: {
+            VueTelInput
+        },
         name: "client-form",
         props: {
             client: {type: Object, required: false}
@@ -62,6 +70,7 @@
                     city: '',
                     description: '',
                     zipCode: null,
+                    phone: ''
                 },
                 loading: false,
                 gqlError: null
@@ -74,6 +83,7 @@
                 this.form.zipCode = this.client.zipCode;
                 this.form.city = this.client.city;
                 this.form.description = this.client.description;
+                this.form.phone = this.client.phone
             }
         },
         methods: {
@@ -84,6 +94,7 @@
                     this.form.zipCode = '';
                     this.form.city = '';
                     this.form.description = '';
+                    this.form.phone = '';
                     this.$emit('created')
                 } else {
                     this.$emit('edited')
@@ -96,7 +107,8 @@
                         address: this.form.address,
                         zip_code: this.form.zipCode,
                         city: this.form.city,
-                        description: this.form.description
+                        description: this.form.description,
+                        phone: this.form.phone
                     }
                 };
                 if (this.client) {
