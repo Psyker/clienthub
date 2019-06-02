@@ -26,7 +26,7 @@
                             <small>Description</small>
                             <p>
                                 <b>{{this.currentDescription}}</b>
-                                <button v-if="!readMore" v-on:click="handleReadMore">...</button>
+                                <button class="read-more" v-if="!readMore" v-on:click="handleReadMore">...</button>
                             </p>
                         </b-list-group-item>
                         <b-list-group-item>
@@ -214,6 +214,10 @@
                 padding-bottom: 0;
                 p {
                     margin-bottom: 0;
+                }
+                .read-more {
+                    background-color: transparent;
+                    border: none;
                 }
             }
         }

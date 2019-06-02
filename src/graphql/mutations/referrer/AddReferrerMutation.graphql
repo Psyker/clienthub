@@ -1,0 +1,10 @@
+mutation AddReferrerMutation($input: CreateReferrerInput!) {
+    createReferrer(input: $input) {
+        referrer {
+            firstname
+            lastname
+            job
+            email
+        }
+    }
+}
