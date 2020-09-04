@@ -10,7 +10,7 @@
   "dependencies": {
     "bootstrap": "^4.3.1",
     "bootstrap-vue": "^2.0.0-rc.15",
-    "node-sass": "^4.11.0",
+    "node-sass": "^4.13.1",
     "vue": "^2.6.10",
     "vue-apollo": "^3.0.0-beta.11",
     "vue-headful": "^2.0.1",
