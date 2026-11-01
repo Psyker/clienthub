@@ -6,7 +6,8 @@
   "author": "Théo Bourgoin <bourgoin.theo1@gmail.com>",
   "repository": "git@github.com:Psyker/clienthub.git",
   "scripts": {
-    "prepare": "husky"
+    "prepare": "husky",
+    "test:security": "node --test scripts/security.test.mjs"
   },
   "devDependencies": {
     "@commitlint/config-conventional": "^21.2.0",

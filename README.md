@@ -71,7 +71,16 @@ pnpm --filter @clienthub/frontend ts:check
 pnpm --filter @clienthub/frontend test:ci
 pnpm --filter @clienthub/frontend build
 pnpm --filter @clienthub/backend test:ci
+pnpm test:security
 ```
+
+Le patch `patches/deepmerge@4.3.1.patch` protège la fusion des objets contre
+la pollution de prototype décrite dans
+[GHSA-gcqx-w48m-w2h4](https://github.com/advisories/GHSA-gcqx-w48m-w2h4).
+L'audit npm continue à signaler la version amont, car il ne tient pas compte de
+ce patch local. L'alerte n'est pas ignorée ; `pnpm test:security` couvre le scénario
+vulnérable et la compatibilité d'Expo CLI avec la version corrigée de Zod.
+Le patch devra être retiré lorsqu'un correctif amont vérifié sera disponible.
 
 ## Mobile
 

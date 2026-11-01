@@ -74,3 +74,13 @@ Run from repo root.
 - `ts:check` uses the native TypeScript 7 compiler; TypeScript 6 remains installed for tools that have not adopted the native compiler. Validate codegen, Next.js, Storybook, and Vitest before changing that split.
 - Add focused Vitest tests beside testable utilities and behavior. `test:ci` is the non-watch validation command; follow `TESTING.md` for conventions.
 - Test React component behavior with React Testing Library and user-visible queries. Use direct React DOM APIs only for renderer-level fixtures such as producing server HTML for an explicit hydration test.
+
+<!-- BEGIN:nextjs-agent-rules -->
+
+## This is NOT the Next.js you know
+
+This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` (resolved from this file's directory; in monorepos the `next` package may not be visible from the repo root) before writing any code. Heed deprecation notices.
+
+This block is written and re-added by `next dev` — verify at `node_modules/next/dist/server/lib/generate-agent-files.js`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
+
+<!-- END:nextjs-agent-rules -->
