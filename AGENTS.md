@@ -1,8 +1,8 @@
 # AGENTS.md
-Operational guide for coding agents working in `larastack`.
+Operational guide for coding agents working in `clienthub`.
 
 ## Scope and Precedence
-- This repository is a template; consumers may keep only a subset of `backend/`, `frontend/`, and `mobile/`.
+- This repository is ClientHub; the application uses `backend/`, `frontend/`, and `mobile/`.
 - Do not assume every workspace exists; check directories before running package-specific commands.
 - Keep this root file global and cross-workspace only.
 - Put package-specific guidance in package-local files:
@@ -17,7 +17,7 @@ Operational guide for coding agents working in `larastack`.
 - Node.js baseline: use `.nvmrc` (currently 22.22.1); `engines.node` defines the compatibility floor (currently >=22.22.1).
 - pnpm workspace/package-manager settings live in `pnpm-workspace.yaml`; use `.npmrc` only for registry and authentication settings.
 - Type checking intentionally uses the native TypeScript 7 compiler while TypeScript 6 remains catalogued for ecosystem compatibility; do not collapse the pair without validating every workspace toolchain.
-- Optional packages in this template:
+- Application workspaces:
   - `backend/` -> Laravel 13, Lighthouse GraphQL, Sail
   - `frontend/` -> Next.js 16 App Router, Apollo Client, Panda CSS
   - `mobile/` -> Expo Router, React Native, Uniwind/Tailwind CSS 4
@@ -38,9 +38,9 @@ Run from repo root unless explicitly noted.
 - Run a package script: `pnpm --filter <workspace-name> <script>`
 - Run workspace tests (if configured): `pnpm --filter <workspace-name> test:ci`
 - Known workspace names (if present):
-  - `@larastack/backend`
-  - `@larastack/frontend`
-  - `@larastack/mobile`
+  - `@clienthub/backend`
+  - `@clienthub/frontend`
+  - `@clienthub/mobile`
 
 ## Shared Standards
 - Make minimal, focused changes; avoid drive-by refactors.

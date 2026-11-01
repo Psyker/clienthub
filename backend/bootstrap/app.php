@@ -16,7 +16,7 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware
             ->statefulApi()
             ->encryptCookies(except: [
-                'larastack_logged_in',
+                'clienthub_logged_in',
             ])
             ->web([
                 SetLoggedInCookieMiddleware::class,

@@ -1,6 +1,6 @@
-# Larastack Frontend 🚀
+# ClientHub Frontend 🚀
 
-This is the web frontend part of the Larastack project, a fullstack starter template with a Laravel backend, a Next.js web app, and an Expo/React Native mobile app in `../mobile`.
+ClientHub web frontend, with a Laravel API in `../backend` and a future iPhone app in `../mobile`.
 
 ## Technologies Used 🛠️
 
@@ -20,7 +20,7 @@ From the repository root, install dependencies and start the frontend dev server
 
 ```bash
 pnpm install
-pnpm --filter @larastack/frontend dev
+pnpm --filter @clienthub/frontend dev
 ```
 
 Or from this directory (`frontend/`):
@@ -38,11 +38,11 @@ You can start editing the public landing page in `app/(public)/page.tsx`. The pa
 Run these from the repo root:
 
 ```bash
-pnpm --filter @larastack/frontend dev
-pnpm --filter @larastack/frontend build
-pnpm --filter @larastack/frontend ts:check
-pnpm --filter @larastack/frontend gen:gql
-pnpm --filter @larastack/frontend storybook
+pnpm --filter @clienthub/frontend dev
+pnpm --filter @clienthub/frontend build
+pnpm --filter @clienthub/frontend ts:check
+pnpm --filter @clienthub/frontend gen:gql
+pnpm --filter @clienthub/frontend storybook
 ```
 
 ## Project Structure 📁

@@ -21,10 +21,10 @@ export const metadata: Metadata = {
   appleWebApp: {
     statusBarStyle: 'black-translucent',
   },
-  description: 'A playful, modern Laravel + Next.js starter with GraphQL and a bold design system.',
+  description: 'ClientHub centralise vos clients, interventions et licences logicielles.',
   title: {
-    default: 'Larastack',
-    template: '%s | Larastack',
+    default: 'ClientHub',
+    template: '%s | ClientHub',
   },
 }
 

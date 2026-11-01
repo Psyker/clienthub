@@ -8,7 +8,7 @@ import { resolveSafeReturnPath } from '~/utils/url'
 export const LOGIN_URL = routes.auth.login.root
 export const LOGGED_IN_URL = routes.dashboard.root
 export const FALLBACK_URL = routes.auth.login.root
-export const LOGGED_IN_COOKIE_NAME = 'larastack_logged_in'
+export const LOGGED_IN_COOKIE_NAME = 'clienthub_logged_in'
 
 export type AuthProvider = 'google'
 

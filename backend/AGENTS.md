@@ -33,16 +33,16 @@ Run from `backend/` unless otherwise noted.
 ## Commands
 Run from repo root unless otherwise noted.
 
-- Dev (Vite): `pnpm --filter @larastack/backend dev`
-- Build (Vite): `pnpm --filter @larastack/backend build`
+- Dev (Vite): `pnpm --filter @clienthub/backend dev`
+- Build (Vite): `pnpm --filter @clienthub/backend build`
 - Dev processes (queue worker + Pail, via `artisan dev`): from `backend/`, `./vendor/bin/sail composer run dev`
-- Check PHP formatting (Pint, Laravel preset): `pnpm --filter @larastack/backend lint`
-- Fix PHP formatting: `pnpm --filter @larastack/backend lint:fix`
-- Static analysis: `pnpm --filter @larastack/backend types:check`
-- Full CI gate (Pint + PHPStan + Pest): `pnpm --filter @larastack/backend test:ci`
+- Check PHP formatting (Pint, Laravel preset): `pnpm --filter @clienthub/backend lint`
+- Fix PHP formatting: `pnpm --filter @clienthub/backend lint:fix`
+- Static analysis: `pnpm --filter @clienthub/backend types:check`
+- Full CI gate (Pint + PHPStan + Pest): `pnpm --filter @clienthub/backend test:ci`
 - Dependency security audit: from `backend/`, `./vendor/bin/sail composer audit --locked`
-- Reset DB + seed: `pnpm --filter @larastack/backend db:reset`
-- Dump GraphQL schema and sync client schema files: `pnpm --filter @larastack/backend gql:dump`
+- Reset DB + seed: `pnpm --filter @clienthub/backend db:reset`
+- Dump GraphQL schema and sync client schema files: `pnpm --filter @clienthub/backend gql:dump`
 
 The PHP tooling flags live in `backend/composer.json` (`lint`, `lint:check`, `types:check`,
 `test`, `ci:check`), mirroring the official Laravel skeleton and starter kits. The npm scripts
@@ -58,7 +58,7 @@ Run these from `backend/`.
 
 ## Backend Standards
 - Run PHP tooling commands (for example `composer`, `artisan`, `pest`) through Sail when available.
-- Repository-specific exception to generated Sail guidance: run JavaScript workspace commands through root `pnpm --filter @larastack/backend ...`; do not run pnpm workspace tooling through Sail.
+- Repository-specific exception to generated Sail guidance: run JavaScript workspace commands through root `pnpm --filter @clienthub/backend ...`; do not run pnpm workspace tooling through Sail.
 - Repository-specific guidance above overrides conflicting generated guidance below, especially the root pnpm/Sail exception.
 - Do not run local cache/optimization commands such as `config:cache`, `route:cache`, `view:cache`, `event:cache`, or `optimize` during development/testing unless explicitly requested; these are deployment steps and can make local tests/config read stale values.
 - If cache/optimization commands are explicitly needed for deployment validation, run `./vendor/bin/sail artisan optimize:clear`, `./vendor/bin/sail artisan lighthouse:clear-schema-cache`, and `./vendor/bin/sail artisan lighthouse:clear-query-cache` immediately after validation.
@@ -76,7 +76,7 @@ Run these from `backend/`.
 - Keep logs structured and actionable; never log secrets.
 
 ## GraphQL and Client Sync
-- After schema changes under `backend/graphql/**/*.graphql`, run `pnpm --filter @larastack/backend gql:dump`.
+- After schema changes under `backend/graphql/**/*.graphql`, run `pnpm --filter @clienthub/backend gql:dump`.
 - `gql:dump` prints the Lighthouse schema, copies it into each existing client workspace, and runs that client's GraphQL codegen. Do not rerun the frontend/mobile generators unless debugging or regenerating client-only operation changes.
 - The generated Boost block at the end of this file is derived from the installed backend
   dependencies. Refresh it after dependency changes with
@@ -95,7 +95,7 @@ Run these from `backend/`.
   backend-scoped. Only skills were relocated to the workspace root.
 - The Boost MCP server is wired for Claude Code in the workspace-root `.mcp.json`, mirroring the
   `laravel-boost` entry in `opencode.json`. Both shell out to
-  `docker exec -i larastack-app-1 php /var/www/html/artisan boost:mcp`, so the Sail app container
+  `docker exec -i clienthub-app-1 php /var/www/html/artisan boost:mcp`, so the Sail app container
   must be running (`./vendor/bin/sail up -d`) before the tools resolve. Keep that file by hand:
   `boost:install` would write `backend/.mcp.json`, which agents running from the repository root
   never read.

@@ -1,5 +1,5 @@
 {
-  "name": "@larastack/mobile",
+  "name": "@clienthub/mobile",
   "version": "0.0.0",
   "license": "0BSD",
   "main": "expo-router/entry",

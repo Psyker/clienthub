@@ -65,36 +65,36 @@ Run from repo root.
 ### Development
 
 ```bash
-pnpm --filter @larastack/mobile dev                         # Start dev server
-pnpm --filter @larastack/mobile exec expo install <package> # Install packages with compatible versions
-pnpm --filter @larastack/mobile exec expo install --check   # Check which installed packages need updates
-pnpm --filter @larastack/mobile exec expo install --fix     # Update invalid package versions
-pnpm --filter @larastack/mobile development-builds          # Create development builds (workflow)
+pnpm --filter @clienthub/mobile dev                         # Start dev server
+pnpm --filter @clienthub/mobile exec expo install <package> # Install packages with compatible versions
+pnpm --filter @clienthub/mobile exec expo install --check   # Check which installed packages need updates
+pnpm --filter @clienthub/mobile exec expo install --fix     # Update invalid package versions
+pnpm --filter @clienthub/mobile development-builds          # Create development builds (workflow)
 ```
 
-- Do not run `expo start`/`pnpm --filter @larastack/mobile dev` in the background (no `&`, `nohup`, or detached logging) unless the user explicitly asks for background execution.
+- Do not run `expo start`/`pnpm --filter @clienthub/mobile dev` in the background (no `&`, `nohup`, or detached logging) unless the user explicitly asks for background execution.
 - This configured app requires a development build. Google Sign-In is imported at startup and depends on custom native code that Expo Go does not include.
 
 ### Building & Testing
 
 ```bash
-pnpm --filter @larastack/mobile expo:doctor      # Check project health and dependencies
-pnpm --filter @larastack/mobile ts:check         # Run TypeScript type checking
-pnpm --filter @larastack/mobile test             # Watch all unit and native component tests
-pnpm --filter @larastack/mobile test:ci          # Run the same complete suite once
-pnpm --filter @larastack/mobile test:watch       # Explicit watch mode for the complete suite
-pnpm --filter @larastack/mobile lint             # Run oxlint
-pnpm --filter @larastack/mobile format:check      # Check oxfmt formatting
-pnpm --filter @larastack/mobile gen:gql           # Regenerate GraphQL artifacts
-pnpm --filter @larastack/mobile draft            # Publish a preview update (workflow)
+pnpm --filter @clienthub/mobile expo:doctor      # Check project health and dependencies
+pnpm --filter @clienthub/mobile ts:check         # Run TypeScript type checking
+pnpm --filter @clienthub/mobile test             # Watch all unit and native component tests
+pnpm --filter @clienthub/mobile test:ci          # Run the same complete suite once
+pnpm --filter @clienthub/mobile test:watch       # Explicit watch mode for the complete suite
+pnpm --filter @clienthub/mobile lint             # Run oxlint
+pnpm --filter @clienthub/mobile format:check      # Check oxfmt formatting
+pnpm --filter @clienthub/mobile gen:gql           # Regenerate GraphQL artifacts
+pnpm --filter @clienthub/mobile draft            # Publish a preview update (workflow)
 ```
 
 ### Production
 
 ```bash
-pnpm --filter @larastack/mobile build:prod:ios     # Build iOS production app
-pnpm --filter @larastack/mobile build:prod:android # Build Android production app
-pnpm --filter @larastack/mobile deploy             # Deploy to production (workflow)
+pnpm --filter @clienthub/mobile build:prod:ios     # Build iOS production app
+pnpm --filter @clienthub/mobile build:prod:android # Build Android production app
+pnpm --filter @clienthub/mobile deploy             # Deploy to production (workflow)
 ```
 
 ## Development Guidelines
@@ -107,7 +107,7 @@ pnpm --filter @larastack/mobile deploy             # Deploy to production (workf
 - **Stack Primitives by Default**: Prefer `<HStack />` and `<VStack />` for simple horizontal/vertical layouts instead of raw `<View className="flex-row" />` or `<View className="flex-col" />`. These stack primitives provide sensible defaults and keep layout patterns consistent.
 - **Shadows via Uniwind Classes**: Prefer Tailwind/Uniwind shadow utilities in `className` (for example, `shadow-sm`, `shadow-md`) instead of inline `style` shadow objects (`shadowColor`, `shadowOffset`, `shadowOpacity`, `shadowRadius`, `elevation`) by default.
 - **Self-Documenting Code**: Write clear, readable code that explains itself; only add comments for complex business logic or design decisions
-- **Generated Code**: Do not hand-edit `src/__generated__/`; change the GraphQL operation/schema inputs and run `pnpm --filter @larastack/mobile gen:gql`
+- **Generated Code**: Do not hand-edit `src/__generated__/`; change the GraphQL operation/schema inputs and run `pnpm --filter @clienthub/mobile gen:gql`
 - **Public Environment**: `EXPO_PUBLIC_*` values are embedded in the app bundle. They may identify public clients/endpoints but must never contain secrets.
 - **Continuous Native Generation**: `ios/` and `android/` are generated and not committed. Native dependencies or config-plugin changes require a fresh development build.
 - **React 19 Patterns**: Follow modern React patterns including:
@@ -188,7 +188,7 @@ When working with EAS Workflows, **always refer to**:
 
 ### Development Builds vs Expo Go
 
-Use a **development build** for this repo; Expo Go cannot boot the configured app because Google Sign-In requires custom native code. Create development builds with `pnpm --filter @larastack/mobile build:dev:ios` and/or `pnpm --filter @larastack/mobile build:dev:android`. After installing native packages or changing config plugins, create a fresh development build.
+Use a **development build** for this repo; Expo Go cannot boot the configured app because Google Sign-In requires custom native code. Create development builds with `pnpm --filter @clienthub/mobile build:dev:ios` and/or `pnpm --filter @clienthub/mobile build:dev:android`. After installing native packages or changing config plugins, create a fresh development build.
 
 ## AI Agent Instructions
 

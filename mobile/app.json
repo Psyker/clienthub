@@ -1,15 +1,15 @@
 {
-  "name": "larastack",
-  "slug": "larastack",
+  "name": "ClientHub",
+  "slug": "clienthub",
   "version": "1.0.0",
   "orientation": "portrait",
   "platforms": ["ios", "android"],
   "icon": "./src/assets/images/icon.png",
-  "scheme": "larastack",
+  "scheme": "clienthub",
   "userInterfaceStyle": "light",
   "ios": {
     "supportsTablet": true,
-    "bundleIdentifier": "com.liinkiing.larastack",
+    "bundleIdentifier": "com.psyker.clienthub",
     "usesAppleSignIn": true,
     "config": {
       "usesNonExemptEncryption": false
@@ -22,7 +22,7 @@
       "backgroundImage": "./src/assets/images/android-icon-background.png",
       "monochromeImage": "./src/assets/images/android-icon-monochrome.png"
     },
-    "package": "com.liinkiing.larastack"
+    "package": "com.psyker.clienthub"
   },
   "web": {
     "bundler": "metro",
@@ -77,7 +77,6 @@
   "extra": {
     "router": {}
   },
-  "owner": "liinkiing",
   "runtimeVersion": {
     "policy": "appVersion"
   }

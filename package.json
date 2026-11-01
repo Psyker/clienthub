@@ -1,10 +1,10 @@
 {
-  "name": "@larastack/workspace",
+  "name": "@clienthub/workspace",
   "version": "0.0.0",
   "private": true,
   "license": "MIT",
-  "author": "Omar Jbara <omar.jbara2@gmail.com>",
-  "repository": "git@github.com:liinkiing/larastack.git",
+  "author": "Théo Bourgoin <bourgoin.theo1@gmail.com>",
+  "repository": "git@github.com:Psyker/clienthub.git",
   "scripts": {
     "prepare": "husky"
   },

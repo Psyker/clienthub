@@ -1,4 +1,4 @@
-name: 'larastack'
+name: 'clienthub'
 services:
   app:
     build:

@@ -1,49 +1,33 @@
-# Larastack 🚀
+# ClientHub
 
-Welcome to Larastack, a fullstack starter template that combines Laravel for the backend, Next.js for the web frontend, and Expo/React Native for mobile. This starter kit is designed to streamline development for modern, scalable, multi-platform applications.
+Application de gestion client de Théo Bourgoin ([Psyker](https://github.com/Psyker)).
 
-## Technologies Used 🛠️
+La première version vise la gestion des clients et contacts, des interventions
+et des licences logicielles, avec un compte utilisateur authentifié.
+Le mode SaaS et la facturation sont reportés. L'application web et l'API précèdent
+la future application iPhone et le serveur MCP.
 
-### Backend
+## Structure
 
-- **Laravel**: A robust PHP framework used to build the backend of the application, handle routes, database interactions, and more.
-- **Lighthouse GraphQL**: A GraphQL server package for Laravel that simplifies the implementation of GraphQL APIs.
-- **Laravel Socialite**: Facilitates easy integration with social authentication providers, making it simple to set up user authentication using popular social platforms.
+- `backend/` : Laravel, Lighthouse GraphQL, Sanctum et Socialite.
+- `frontend/` : Next.js et Panda CSS.
+- `mobile/` : base Expo/React Native pour la future application iPhone.
 
-### Frontend
+## Installation
 
-- **Next.js**: A powerful React framework for building server-side rendered and statically generated web applications.
-- **Panda CSS**: A styling engine used for writing CSS-in-JS, providing flexibility and ease of use in styling components.
-- **Storybook**: A tool for developing UI components in isolation, making it easier to build and test components.
+Prérequis : Node.js indiqué dans `.nvmrc`, Corepack et Docker avec intégration WSL
+activée si nécessaire.
 
-### Mobile
+```shell
+git clone https://github.com/Psyker/clienthub.git
+cd clienthub
+nvm use
+corepack enable
+corepack install
+pnpm install --frozen-lockfile
+```
 
-- **Expo**: A platform and toolchain for building and shipping React Native apps quickly.
-- **React Native**: A framework for building native mobile apps using React.
-- **Expo Router**: File-based routing and navigation for Expo apps.
-
-## Features ✨
-
-- **GraphQL Integration**: Easily create and manage GraphQL endpoints with Lighthouse.
-- **OAuth Login**: Simplified user authentication using Laravel Socialite.
-- **Custom Components**: A set of custom components to ease development when building new features.
-- **Cross-Platform Setup**: Build backend, web, and mobile apps from a single monorepo.
-
-## Installation ⚙️
-
-1. Clone the repository and install shared JavaScript dependencies:
-
-   ```shell
-   git clone https://github.com/Liinkiing/larastack.git
-   cd larastack
-   corepack enable
-   corepack install
-   pnpm install
-   ```
-
-### Backend
-
-From `backend/`, install PHP dependencies and boot Laravel Sail:
+Depuis `backend/`, installer les dépendances PHP :
 
 ```shell
 cd backend
@@ -56,43 +40,57 @@ docker run --rm \
 cp .env.example .env
 ./vendor/bin/sail up -d
 ./vendor/bin/sail artisan key:generate
+./vendor/bin/sail artisan migrate
 ```
 
-### Frontend
+Ne copier `.env` et ne générer la clé que lors de la première installation.
+Si l'environnement local existe déjà et que le bootstrap Composer échoue faute
+d'extension Redis, terminer l'installation avec `./vendor/bin/sail composer install`
+après le démarrage de Sail.
 
-From the repo root, start the web app with:
+Depuis la racine du dépôt, démarrer le web :
 
-```bash
-pnpm --filter @larastack/frontend dev
+```shell
+pnpm --filter @clienthub/frontend dev
 ```
 
-Then open [http://localhost:3000](http://localhost:3000).
+- Web : http://localhost:3000
+- API GraphQL : http://localhost:8000/graphql
+- Mailpit : http://localhost:8025
 
-### Mobile
+Les identifiants OAuth doivent être configurés pour utiliser les connexions
+correspondantes. Le starter ne crée pas automatiquement le compte personnel.
 
-From the repo root, start the Expo app with:
+## Vérifications
 
-```bash
-pnpm --filter @larastack/mobile dev
+Depuis la racine :
+
+```shell
+pnpm --filter @clienthub/frontend lint
+pnpm --filter @clienthub/frontend ts:check
+pnpm --filter @clienthub/frontend test:ci
+pnpm --filter @clienthub/frontend build
+pnpm --filter @clienthub/backend test:ci
 ```
 
-Open the app in an iOS simulator or Android emulator with a development build. Expo Go cannot boot this configured app because Google Sign-In requires custom native code.
+## Mobile
 
-## Learn More 📚
+```shell
+pnpm --filter @clienthub/mobile dev
+```
 
-To learn more about the technologies used in this project, take a look at the following resources:
+Les identifiants natifs prévus sont `com.psyker.clienthub`. Ils restent à
+confirmer lors de la configuration des comptes développeur et de la signature.
+Le projet n'est lié à aucun propriétaire Expo/EAS. Il sera associé au compte
+retenu lors de la préparation des builds iPhone. Le schéma URL Google iOS du
+starter (`<YOUR_IOS_URL_SCHEME>`) reste à remplacer par celui de ton client OAuth
+avant de résoudre la configuration native et de construire l’application.
+Les icônes mobiles sont encore
+les visuels génériques du starter. Le code Android du starter reste disponible.
 
-- [Laravel Documentation](https://laravel.com/docs)
-- [Lighthouse GraphQL Documentation](https://lighthouse-php.com)
-- [Laravel Socialite Documentation](https://laravel.com/docs/socialite)
-- [Next.js Documentation](https://nextjs.org/docs)
-- [Panda CSS Documentation](https://panda-css.com)
-- [Storybook Documentation](https://storybook.js.org/docs)
-- [Expo Documentation](https://docs.expo.dev)
-- [React Native Documentation](https://reactnative.dev/docs/getting-started)
+## Provenance
 
-## Deploy on Vercel 🚀
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app).
-
-Check out the [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Ce projet est basé sur [LaraStack](https://github.com/Liinkiing/larastack),
+créé par Omar Jbara ([Liinkiing](https://github.com/Liinkiing)), importé au commit
+`7aa218b71f4477ce98cc265d71cbc3988349803f`.
+Les licences et crédits des dépendances et ressources tierces sont conservés.

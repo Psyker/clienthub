@@ -29,23 +29,23 @@ Operational guide for coding agents working in `frontend/`.
 
 Run from repo root.
 
-- Dev: `pnpm --filter @larastack/frontend dev`
-- Build: `pnpm --filter @larastack/frontend build`
-- Start: `pnpm --filter @larastack/frontend start`
-- Typecheck: `pnpm --filter @larastack/frontend ts:check`
-- Pre-typecheck pipeline: `pnpm --filter @larastack/frontend prets:check`
-- Test: `pnpm --filter @larastack/frontend test`
-- Test (CI): `pnpm --filter @larastack/frontend test:ci`
-- Test (watch): `pnpm --filter @larastack/frontend test:watch`
-- Lint: `pnpm --filter @larastack/frontend lint`
-- Lint fix: `pnpm --filter @larastack/frontend lint:fix`
-- Format: `pnpm --filter @larastack/frontend format`
-- Format check: `pnpm --filter @larastack/frontend format:check`
-- GraphQL codegen: `pnpm --filter @larastack/frontend gen:gql`
-- GraphQL codegen watch: `pnpm --filter @larastack/frontend gen:gql:watch`
-- Panda codegen: `pnpm --filter @larastack/frontend gen:panda`
-- Storybook: `pnpm --filter @larastack/frontend storybook`
-- Storybook build: `pnpm --filter @larastack/frontend build-storybook`
+- Dev: `pnpm --filter @clienthub/frontend dev`
+- Build: `pnpm --filter @clienthub/frontend build`
+- Start: `pnpm --filter @clienthub/frontend start`
+- Typecheck: `pnpm --filter @clienthub/frontend ts:check`
+- Pre-typecheck pipeline: `pnpm --filter @clienthub/frontend prets:check`
+- Test: `pnpm --filter @clienthub/frontend test`
+- Test (CI): `pnpm --filter @clienthub/frontend test:ci`
+- Test (watch): `pnpm --filter @clienthub/frontend test:watch`
+- Lint: `pnpm --filter @clienthub/frontend lint`
+- Lint fix: `pnpm --filter @clienthub/frontend lint:fix`
+- Format: `pnpm --filter @clienthub/frontend format`
+- Format check: `pnpm --filter @clienthub/frontend format:check`
+- GraphQL codegen: `pnpm --filter @clienthub/frontend gen:gql`
+- GraphQL codegen watch: `pnpm --filter @clienthub/frontend gen:gql:watch`
+- Panda codegen: `pnpm --filter @clienthub/frontend gen:panda`
+- Storybook: `pnpm --filter @clienthub/frontend storybook`
+- Storybook build: `pnpm --filter @clienthub/frontend build-storybook`
 
 ## Frontend Standards
 
@@ -64,8 +64,8 @@ Run from repo root.
 
 ## GraphQL Workflow
 
-- After operation/fragment changes in `app/**/*.ts(x)` or `src/**/*.ts(x)`, run `pnpm --filter @larastack/frontend gen:gql`.
-- If backend schema changed and `backend/` exists, run `pnpm --filter @larastack/backend gql:dump` first.
+- After operation/fragment changes in `app/**/*.ts(x)` or `src/**/*.ts(x)`, run `pnpm --filter @clienthub/frontend gen:gql`.
+- If backend schema changed and `backend/` exists, run `pnpm --filter @clienthub/backend gql:dump` first.
 - Apollo runtime data masking is authoritative. Keep Codegen's own fragment masking disabled, consume fragments with Apollo's `useFragment`, and use `@unmask` only when a caller intentionally needs fragment fields inline.
 - Treat `src/__generated__/` and `src/styled-system/` as generated output; change their source configuration or schema and regenerate instead of patching generated files.
 

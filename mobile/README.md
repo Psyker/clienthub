@@ -1,13 +1,13 @@
-# Larastack Mobile 📱
+# ClientHub Mobile 📱
 
-This is the Expo/React Native mobile app for Larastack. It lives in the same monorepo as the Laravel backend (`../backend`) and Next.js frontend (`../frontend`).
+This is the Expo/React Native mobile app for ClientHub. It lives in the same monorepo as the Laravel backend (`../backend`) and Next.js frontend (`../frontend`).
 
 ## Get started
 
 From the repository root, run:
 
 ```bash
-pnpm --filter @larastack/mobile dev
+pnpm --filter @clienthub/mobile dev
 ```
 
 Or from this directory (`mobile/`), run:
@@ -31,12 +31,12 @@ You can start developing by editing files in **src/app**. This project uses [fil
 Run these from the repo root:
 
 ```bash
-pnpm --filter @larastack/mobile dev
-pnpm --filter @larastack/mobile expo:doctor
-pnpm --filter @larastack/mobile build:dev:android
-pnpm --filter @larastack/mobile build:dev:ios
-pnpm --filter @larastack/mobile build:prod:android
-pnpm --filter @larastack/mobile build:prod:ios
+pnpm --filter @clienthub/mobile dev
+pnpm --filter @clienthub/mobile expo:doctor
+pnpm --filter @clienthub/mobile build:dev:android
+pnpm --filter @clienthub/mobile build:dev:ios
+pnpm --filter @clienthub/mobile build:prod:android
+pnpm --filter @clienthub/mobile build:prod:ios
 ```
 
 ## Workflows

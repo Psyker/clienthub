@@ -16,7 +16,7 @@ export default function TermsPage() {
       <Stack gap={6} maxW="720px">
         <Heading as="h1">Terms</Heading>
         <Text color="text.muted">
-          By using Larastack you agree to keep credentials safe, respect rate limits, and avoid misuse of the platform.
+          By using ClientHub you agree to keep credentials safe, respect rate limits, and avoid misuse of the platform.
           We keep the service friendly, fast, and reliable for everyone.
         </Text>
         <Stack gap={4}>

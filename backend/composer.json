@@ -1,11 +1,12 @@
 {
   "$schema": "https://getcomposer.org/schema.json",
-  "name": "laravel/laravel",
+  "name": "psyker/clienthub-backend",
   "type": "project",
-  "description": "The skeleton application for the Laravel framework.",
+  "description": "ClientHub backend API.",
   "keywords": [
+    "clienthub",
     "laravel",
-    "framework"
+    "crm"
   ],
   "license": "MIT",
   "require": {
@@ -115,5 +116,12 @@
     }
   },
   "minimum-stability": "stable",
-  "prefer-stable": true
+  "prefer-stable": true,
+  "authors": [
+    {
+      "name": "Théo Bourgoin",
+      "email": "bourgoin.theo1@gmail.com",
+      "homepage": "https://github.com/Psyker"
+    }
+  ]
 }

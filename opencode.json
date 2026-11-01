@@ -3,7 +3,7 @@
   "mcp": {
     "laravel-boost": {
       "type": "local",
-      "command": ["docker", "exec", "-i", "larastack-app-1", "php", "/var/www/html/artisan", "boost:mcp"],
+      "command": ["docker", "exec", "-i", "clienthub-app-1", "php", "/var/www/html/artisan", "boost:mcp"],
       "enabled": true
     },
     "ark-ui": {

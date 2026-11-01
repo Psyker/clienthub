@@ -3,7 +3,7 @@
 Run the frontend suite from the repository root:
 
 ```sh
-pnpm --filter @larastack/frontend test
+pnpm --filter @clienthub/frontend test
 ```
 
 - `test` / `test:watch`: run Vitest in watch mode.

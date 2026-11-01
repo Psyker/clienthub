@@ -59,7 +59,7 @@ it('authenticates a verified Apple account and issues a named mobile token', fun
         'apple_user' => 'apple-user-123',
         'given_name' => 'Verified',
         'family_name' => 'User',
-        'device_name' => 'Omar iPhone',
+        'device_name' => 'ClientHub iPhone',
     ])->assertSuccessful();
 
     $user = User::query()->where('apple_id', 'apple-user-123')->firstOrFail();
@@ -67,7 +67,7 @@ it('authenticates a verified Apple account and issues a named mobile token', fun
     expect($response->json('token'))->toBeString()->not->toBeEmpty()
         ->and($response->json('user.email'))->toBe('verified@example.com')
         ->and($user->name)->toBe('Verified User')
-        ->and($user->tokens()->sole()->name)->toBe('Omar iPhone');
+        ->and($user->tokens()->sole()->name)->toBe('ClientHub iPhone');
 });
 
 it('does not link Google accounts using unverified email', function () {

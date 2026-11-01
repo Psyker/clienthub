@@ -1,4 +1,4 @@
-# Larastack Backend 🚀
+# ClientHub Backend 🚀
 
 Welcome to the backend directory of your fullstack application template. This is where you'll build the server-side APIs used by both the Next.js frontend (`../frontend`) and the Expo/React Native mobile app (`../mobile`) using Laravel, Lighthouse GraphQL, and Laravel Socialite.
 
@@ -21,8 +21,8 @@ Welcome to the backend directory of your fullstack application template. This is
 1. Clone the repository and install the shared JavaScript workspace dependencies from the repo root:
 
    ```shell
-   git clone https://github.com/Liinkiing/larastack.git
-   cd larastack
+   git clone https://github.com/Psyker/clienthub.git
+   cd clienthub
    pnpm install
    ```
 
@@ -61,12 +61,12 @@ Welcome to the backend directory of your fullstack application template. This is
 Run these from the repo root unless noted otherwise:
 
 ```bash
-pnpm --filter @larastack/backend dev
-pnpm --filter @larastack/backend lint
-pnpm --filter @larastack/backend lint:fix
-pnpm --filter @larastack/backend test
-pnpm --filter @larastack/backend types:check
-pnpm --filter @larastack/backend gql:dump
+pnpm --filter @clienthub/backend dev
+pnpm --filter @clienthub/backend lint
+pnpm --filter @clienthub/backend lint:fix
+pnpm --filter @clienthub/backend test
+pnpm --filter @clienthub/backend types:check
+pnpm --filter @clienthub/backend gql:dump
 ```
 
 For direct Sail commands, run them from `backend/`.

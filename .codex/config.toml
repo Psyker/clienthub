@@ -1,6 +1,6 @@
 [mcp_servers.laravel-boost]
 command = "docker"
-args = ["exec", "-i", "larastack-app-1", "php", "/var/www/html/artisan", "boost:mcp"]
+args = ["exec", "-i", "clienthub-app-1", "php", "/var/www/html/artisan", "boost:mcp"]
 
 [mcp_servers.ark-ui]
 command = "npx"

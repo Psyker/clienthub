@@ -8,9 +8,9 @@ catalog:
   typescript: 6.0.3
 
 packageConfigs:
-  '@larastack/frontend':
+  '@clienthub/frontend':
     saveExact: true
-  '@larastack/mobile':
+  '@clienthub/mobile':
     saveExact: true
 
 allowBuilds:

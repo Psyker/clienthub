@@ -29,8 +29,8 @@ Prefer static, token-driven classes and strongly typed variant contracts.
 5. Keep classes static and explicit; avoid string interpolation in class names.
 6. Follow mobile conventions: component folder in kebab-case, PascalCase component file, local `index.ts` barrel.
 7. Validate with:
-   - `pnpm --filter @larastack/mobile lint`
-   - `pnpm --filter @larastack/mobile ts:check`
+   - `pnpm --filter @clienthub/mobile lint`
+   - `pnpm --filter @clienthub/mobile ts:check`
 
 ## Output Expectations
 

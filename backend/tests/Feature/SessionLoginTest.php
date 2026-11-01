@@ -23,10 +23,10 @@ it('authenticates ULID users with database sessions', function () {
         'email' => $user->email,
         'password' => 'password',
     ])->assertNoContent()
-        ->assertCookie('larastack_logged_in', 'true', false);
+        ->assertCookie('clienthub_logged_in', 'true', false);
 
     $loggedInCookie = collect($response->headers->getCookies())
-        ->first(fn (Cookie $cookie): bool => $cookie->getName() === 'larastack_logged_in');
+        ->first(fn (Cookie $cookie): bool => $cookie->getName() === 'clienthub_logged_in');
 
     expect($loggedInCookie)
         ->not->toBeNull()
@@ -38,7 +38,7 @@ it('authenticates ULID users with database sessions', function () {
 
     $this->post('/logout')
         ->assertNoContent()
-        ->assertCookie('larastack_logged_in', 'false', false);
+        ->assertCookie('clienthub_logged_in', 'false', false);
 
     $this->assertGuest();
 });

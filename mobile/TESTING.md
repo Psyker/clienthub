@@ -3,7 +3,7 @@
 Run all tests from the repository root:
 
 ```sh
-pnpm --filter @larastack/mobile test
+pnpm --filter @clienthub/mobile test
 ```
 
 - `test` / `test:watch`: watch all unit and component tests, including iOS and Android component checks.

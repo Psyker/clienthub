@@ -36,10 +36,10 @@ export const AppNavigation: FC = () => {
           <AppLink borderRadius="full" fontWeight="700" href={routes.root} letterSpacing="-0.02em" px={2} py={1}>
             <HStack gap={1}>
               <Text as="span" color="text.muted" fontFamily="display">
-                Lara
+                Client
               </Text>
               <Text as="span" color="accent.solid" fontFamily="display">
-                stack
+                Hub
               </Text>
             </HStack>
           </AppLink>

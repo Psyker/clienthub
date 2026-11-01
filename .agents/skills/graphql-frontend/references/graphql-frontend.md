@@ -198,8 +198,8 @@ export const useFinishOnboarding = (
 Run after any GraphQL changes:
 
 ```bash
-pnpm --filter @larastack/frontend gen:gql
-pnpm --filter @larastack/mobile gen:gql
+pnpm --filter @clienthub/frontend gen:gql
+pnpm --filter @clienthub/mobile gen:gql
 ```
 
 ## Checklist

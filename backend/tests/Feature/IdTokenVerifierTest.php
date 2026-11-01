@@ -66,7 +66,7 @@ function signedIdToken(string $privateKey, string $keyId, string $issuer, array 
 {
     return JWT::encode([
         'iss' => $issuer,
-        'aud' => 'larastack-test-client',
+        'aud' => 'clienthub-test-client',
         'sub' => 'provider-user',
         'iat' => time() - 60,
         'exp' => time() + 3600,
@@ -80,7 +80,7 @@ dataset('id token providers', [
 ]);
 
 it('refreshes rotated signing keys once and caches the verified key set', function (string $verifier, string $provider, string $issuer) {
-    config()->set("services.{$provider}.allowed_client_ids", ['larastack-test-client']);
+    config()->set("services.{$provider}.allowed_client_ids", ['clienthub-test-client']);
     $old = idTokenSigningFixture('old-key');
     $new = idTokenSigningFixture('new-key');
     Cache::put("{$provider}-id-token-jwks", $old['jwks'], 21600);
@@ -94,7 +94,7 @@ it('refreshes rotated signing keys once and caches the verified key set', functi
 })->with('id token providers');
 
 it('bounds unknown key refreshes across different key IDs and permits a later rotation', function (string $verifier, string $provider, string $issuer) {
-    config()->set("services.{$provider}.allowed_client_ids", ['larastack-test-client']);
+    config()->set("services.{$provider}.allowed_client_ids", ['clienthub-test-client']);
     $old = idTokenSigningFixture('old-key');
     $new = idTokenSigningFixture('new-key');
     Cache::put("{$provider}-id-token-jwks", $old['jwks'], 21600);
@@ -113,7 +113,7 @@ it('bounds unknown key refreshes across different key IDs and permits a later ro
 })->with('id token providers');
 
 it('keeps known keys usable when a rotation refresh fails and bounds retries', function (string $verifier, string $provider, string $issuer) {
-    config()->set("services.{$provider}.allowed_client_ids", ['larastack-test-client']);
+    config()->set("services.{$provider}.allowed_client_ids", ['clienthub-test-client']);
     $old = idTokenSigningFixture('old-key');
     Cache::put("{$provider}-id-token-jwks", $old['jwks'], 21600);
     Http::fake(fn () => Http::response([], 503));
@@ -128,7 +128,7 @@ it('keeps known keys usable when a rotation refresh fails and bounds retries', f
 })->with('id token providers');
 
 it('continues validating claims and signatures without refreshing known key IDs', function (string $verifier, string $provider, string $issuer) {
-    config()->set("services.{$provider}.allowed_client_ids", ['larastack-test-client']);
+    config()->set("services.{$provider}.allowed_client_ids", ['clienthub-test-client']);
     $key = idTokenSigningFixture('known-key');
     $other = idTokenSigningFixture('other-key');
     Cache::put("{$provider}-id-token-jwks", $key['jwks'], 21600);
@@ -145,7 +145,7 @@ it('continues validating claims and signatures without refreshing known key IDs'
 })->with('id token providers');
 
 it('expires cached keys according to the provider max age and response age', function (string $verifier, string $provider, string $issuer) {
-    config()->set("services.{$provider}.allowed_client_ids", ['larastack-test-client']);
+    config()->set("services.{$provider}.allowed_client_ids", ['clienthub-test-client']);
     $key = idTokenSigningFixture('known-key');
     Http::fake(fn () => Http::response($key['jwks'], 200, ['Cache-Control' => 'public, max-age=300', 'Age' => '120']));
     $token = signedIdToken($key['private'], 'known-key', $issuer);

@@ -2,7 +2,7 @@ import * as SecureStore from 'expo-secure-store'
 
 import { getDeviceName } from '~/utils/device'
 
-const ACCESS_TOKEN_KEY = 'larastack.mobile.access-token'
+const ACCESS_TOKEN_KEY = 'clienthub.mobile.access-token'
 const AUTH_REQUEST_TIMEOUT_MS = 10_000
 let accessTokenCache: string | null | undefined
 
