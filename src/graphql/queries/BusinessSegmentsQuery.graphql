@@ -1,5 +1,0 @@
-query BusinessSegments {
-    businessSegments {
-        name
-    }
-}

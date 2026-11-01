@@ -1,0 +1,98 @@
+<?php
+
+namespace App\Services\Auth;
+
+use Firebase\JWT\JWT;
+use Illuminate\Support\Arr;
+use Illuminate\Validation\ValidationException;
+use Throwable;
+
+class AppleIdTokenVerifier
+{
+    private const JWKS_CACHE_KEY = 'apple-id-token-jwks';
+
+    private const JWKS_URL = 'https://appleid.apple.com/auth/keys';
+
+    private const ISSUER = 'https://appleid.apple.com';
+
+    public function __construct(private readonly IdTokenSigningKeys $signingKeys) {}
+
+    /**
+     * @return array<string, mixed>
+     *
+     * @throws ValidationException
+     */
+    public function verify(string $identityToken): array
+    {
+        $keys = $this->signingKeys->forToken($identityToken, self::JWKS_URL, self::JWKS_CACHE_KEY, 'apple', 'identity_token');
+
+        try {
+            $payload = (array) JWT::decode($identityToken, $keys);
+        } catch (Throwable) {
+            throw ValidationException::withMessages([
+                'identity_token' => __('mobile_auth.apple.token_invalid'),
+            ]);
+        }
+
+        $issuer = Arr::get($payload, 'iss');
+        if (! is_string($issuer) || $issuer !== self::ISSUER) {
+            throw ValidationException::withMessages([
+                'identity_token' => __('mobile_auth.apple.issuer_invalid'),
+            ]);
+        }
+
+        if (! $this->audienceIsAllowed(Arr::get($payload, 'aud'))) {
+            throw ValidationException::withMessages([
+                'identity_token' => __('mobile_auth.apple.audience_invalid'),
+            ]);
+        }
+
+        $subject = Arr::get($payload, 'sub');
+        if (! is_string($subject) || $subject === '') {
+            throw ValidationException::withMessages([
+                'identity_token' => __('mobile_auth.apple.subject_missing'),
+            ]);
+        }
+
+        return $payload;
+    }
+
+    private function audienceIsAllowed(mixed $audience): bool
+    {
+        $allowedClientIds = $this->allowedClientIds();
+
+        if ($allowedClientIds === []) {
+            return false;
+        }
+
+        if (is_string($audience)) {
+            return in_array($audience, $allowedClientIds, true);
+        }
+
+        if (! is_array($audience)) {
+            return false;
+        }
+
+        foreach ($audience as $value) {
+            if (is_string($value) && in_array($value, $allowedClientIds, true)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     * @return list<string>
+     */
+    private function allowedClientIds(): array
+    {
+        $configured = config('services.apple.allowed_client_ids', []);
+
+        if (! is_array($configured)) {
+            return [];
+        }
+
+        return array_values(array_filter($configured, static fn (mixed $value): bool => is_string($value) && $value !== ''));
+    }
+}

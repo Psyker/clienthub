@@ -1,0 +1,119 @@
+{
+  "$schema": "https://getcomposer.org/schema.json",
+  "name": "laravel/laravel",
+  "type": "project",
+  "description": "The skeleton application for the Laravel framework.",
+  "keywords": [
+    "laravel",
+    "framework"
+  ],
+  "license": "MIT",
+  "require": {
+    "php": "^8.5",
+    "firebase/php-jwt": "^7.0.5",
+    "laravel/framework": "^13.23",
+    "laravel/sanctum": "^4.3.3",
+    "laravel/socialite": "^5.29",
+    "laravel/tinker": "^3.0.2",
+    "mll-lab/laravel-graphiql": "^4.0",
+    "nuwave/lighthouse": "^6.66"
+  },
+  "require-dev": {
+    "fakerphp/faker": "^1.24",
+    "larastan/larastan": "^3.10",
+    "laravel/boost": "^2.4.13",
+    "laravel/pail": "^1.2.7",
+    "laravel/pao": "^1.0.6",
+    "laravel/pint": "^1.29.3",
+    "laravel/sail": "^1.64",
+    "laravel/telescope": "^5.21",
+    "mockery/mockery": "^1.6",
+    "nunomaduro/collision": "^8.9.4",
+    "pestphp/pest": "^5.0",
+    "pestphp/pest-plugin-laravel": "^5.0",
+    "pestphp/pest-plugin-phpstan": "^5.0",
+    "phpstan/phpstan-mockery": "^2.0",
+    "phpunit/phpunit": "^13.0",
+    "psy/psysh": "^0.12.19"
+  },
+  "autoload": {
+    "files": [
+      "app/helpers.php"
+    ],
+    "psr-4": {
+      "App\\": "app/",
+      "Database\\Factories\\": "database/factories/",
+      "Database\\Seeders\\": "database/seeders/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Tests\\": "tests/"
+    }
+  },
+  "scripts": {
+    "setup": [
+      "composer install",
+      "@php -r \"file_exists('.env') || copy('.env.example', '.env');\"",
+      "@php artisan key:generate",
+      "@php artisan migrate --force"
+    ],
+    "dev": [
+      "Composer\\Config::disableProcessTimeout",
+      "@php artisan dev"
+    ],
+    "lint": [
+      "pint --parallel"
+    ],
+    "lint:check": [
+      "pint --parallel --test"
+    ],
+    "types:check": [
+      "phpstan analyse"
+    ],
+    "test": [
+      "@php artisan config:clear --ansi @no_additional_args",
+      "@lint:check @no_additional_args",
+      "@types:check @no_additional_args",
+      "@php artisan test"
+    ],
+    "ci:check": [
+      "Composer\\Config::disableProcessTimeout",
+      "@test"
+    ],
+    "post-autoload-dump": [
+      "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
+      "@php artisan package:discover --ansi"
+    ],
+    "post-update-cmd": [
+      "@php artisan vendor:publish --tag=laravel-assets --ansi --force"
+    ],
+    "post-root-package-install": [
+      "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
+    ],
+    "post-create-project-cmd": [
+      "@php artisan key:generate --ansi"
+    ],
+    "pre-package-uninstall": [
+      "Illuminate\\Foundation\\ComposerScripts::prePackageUninstall"
+    ]
+  },
+  "extra": {
+    "laravel": {
+      "dont-discover": [
+        "laravel/telescope"
+      ]
+    }
+  },
+  "config": {
+    "optimize-autoloader": true,
+    "preferred-install": "dist",
+    "sort-packages": true,
+    "allow-plugins": {
+      "pestphp/pest-plugin": true,
+      "php-http/discovery": true
+    }
+  },
+  "minimum-stability": "stable",
+  "prefer-stable": true
+}

@@ -1,0 +1,40 @@
+{
+  "$schema": "./node_modules/oxfmt/configuration_schema.json",
+  "semi": false,
+  "arrowParens": "avoid",
+  "ignorePatterns": [
+    ".agents/**/*",
+    "**/AGENTS.md",
+    ".github/**/*",
+    ".husky/**/*",
+    "backend/vendor/**/*",
+    "backend/public/vendor/**/*",
+    "uniwind-types.d.ts"
+  ],
+  "printWidth": 120,
+  "singleQuote": true,
+  "sortImports": {
+    "newlinesBetween": true
+  },
+  "overrides": [
+    {
+      "files": ["mobile/**/*"],
+      "options": {
+        "sortTailwindcss": {
+          "stylesheet": "./mobile/src/global.css",
+          "functions": ["clsx", "cn", "cva", "tv"],
+          "preserveWhitespace": true
+        }
+      }
+    },
+    {
+      "files": ["backend/**/*"],
+      "options": {
+        "sortTailwindcss": {
+          "config": "./backend/tailwind.config.js",
+          "preserveWhitespace": true
+        }
+      }
+    }
+  ]
+}

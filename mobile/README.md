@@ -1,0 +1,70 @@
+# Larastack Mobile 📱
+
+This is the Expo/React Native mobile app for Larastack. It lives in the same monorepo as the Laravel backend (`../backend`) and Next.js frontend (`../frontend`).
+
+## Get started
+
+From the repository root, run:
+
+```bash
+pnpm --filter @larastack/mobile dev
+```
+
+Or from this directory (`mobile/`), run:
+
+```bash
+pnpm run dev
+```
+
+Run the app with:
+
+- [a development build](https://docs.expo.dev/develop/development-builds/introduction/)
+- [an Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
+- [an iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
+
+This app includes native auth modules and config plugins such as Apple Authentication, Google Sign-In, and SecureStore-backed auth flows. Expo Go cannot boot it because Google Sign-In requires custom native code.
+
+You can start developing by editing files in **src/app**. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+
+## Common Commands
+
+Run these from the repo root:
+
+```bash
+pnpm --filter @larastack/mobile dev
+pnpm --filter @larastack/mobile expo:doctor
+pnpm --filter @larastack/mobile build:dev:android
+pnpm --filter @larastack/mobile build:dev:ios
+pnpm --filter @larastack/mobile build:prod:android
+pnpm --filter @larastack/mobile build:prod:ios
+```
+
+## Workflows
+
+This project is configured to use [EAS Workflows](https://docs.expo.dev/eas/workflows/get-started/) to automate some development and release processes. These commands are set up in [`package.json`](./package.json) and can be run using pnpm scripts in your terminal.
+
+### Previews
+
+Run `pnpm run draft` to [publish a preview update](https://docs.expo.dev/eas/workflows/examples/publish-preview-update/) of your project, which can be viewed in a development build.
+
+### Development Builds
+
+Run `pnpm run development-builds` to [create a development build](https://docs.expo.dev/eas/workflows/examples/create-development-builds/). Note - you'll need to follow the [Prerequisites](https://docs.expo.dev/eas/workflows/examples/create-development-builds/#prerequisites) to ensure you have the correct emulator setup on your machine.
+
+### Production Deployments
+
+Run `pnpm run deploy` to [deploy to production](https://docs.expo.dev/eas/workflows/examples/deploy-to-production/). Note - you'll need to follow the [Prerequisites](https://docs.expo.dev/eas/workflows/examples/deploy-to-production/#prerequisites) to ensure you're set up to submit to the Apple and Google stores.
+
+## Learn more
+
+To learn more about developing your project with Expo, look at the following resources:
+
+- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
+- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow Expo's step-by-step introduction, adapting its examples to this app's iOS/Android targets.
+
+## Join the community
+
+Join our community of developers creating universal apps.
+
+- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
+- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.

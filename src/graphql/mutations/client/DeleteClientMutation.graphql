@@ -1,5 +1,0 @@
-mutation DeleteClientMutation($input: DeleteClientInput!) {
-    deleteClient(input: $input) {
-        deletedClientId
-    }
-}

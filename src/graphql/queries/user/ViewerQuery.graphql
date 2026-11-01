@@ -1,9 +1,0 @@
-query ViewerQuery {
-    viewer {
-        __typename
-        id
-        email
-        firstname
-        lastname
-    }
-}
